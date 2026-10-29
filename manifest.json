@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": ".wav Generator",
+  "version": "0.1.0",
+  "description": "Download YouTube audio as WAV, full video or a timestamped clip.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Clip to WAV"
+  },
+  "permissions": ["scripting", "webRequest"],
+  "host_permissions": [
+    "https://*.youtube.com/*",
+    "https://*.googlevideo.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["sniffer.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    }
+  ]
+}

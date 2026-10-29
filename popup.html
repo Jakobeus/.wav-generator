@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { width: 300px; font: 13px/1.4 system-ui, sans-serif; margin: 0; padding: 12px; }
+  h1 { font-size: 14px; margin: 0 0 8px; }
+  #title { font-weight: 600; margin-bottom: 2px; }
+  #meta { color: #666; margin-bottom: 10px; }
+  .row { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+  .row label { width: 44px; }
+  .row input[type=text] { flex: 1; padding: 4px 6px; font: inherit; }
+  button { padding: 4px 8px; font: inherit; cursor: pointer; }
+  #go { width: 100%; padding: 8px; font-weight: 600; margin-top: 4px; }
+  #status { margin-top: 8px; color: #444; min-height: 16px; }
+  #status.err { color: #b00020; }
+  .hint { color: #888; font-size: 11px; margin-top: 6px; }
+  #fname { width: 100%; box-sizing: border-box; padding: 4px 6px; font: inherit; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+  <h1>.wav Generator</h1>
+  <div id="title">—</div>
+  <div id="meta">—</div>
+
+  <div class="row">
+    <label for="start">Start</label>
+    <input id="start" type="text" placeholder="0:00">
+    <button id="startNow" title="Use current playback position">now</button>
+  </div>
+  <div class="row">
+    <label for="end">End</label>
+    <input id="end" type="text" placeholder="end of video">
+    <button id="endNow" title="Use current playback position">now</button>
+  </div>
+
+  <input id="fname" type="text" spellcheck="false">
+  <button id="go" disabled>Download WAV</button>
+  <div id="status"></div>
+  <div class="hint">Times accept 15s, 1m30s, 1:30, or bare seconds</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
