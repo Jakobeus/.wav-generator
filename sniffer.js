@@ -34,7 +34,12 @@ function __wavInstallCapture(g) {
       const s = state.get(this);
       if (!s || !s.pending.length) return;
       const data = s.pending.shift(); // one append → one updateend
-      const cur = snap(this);
+      let cur;
+      try {
+        cur = snap(this);
+      } catch (_) {
+        return; // SourceBuffer removed (SPA nav) — dead sb, drop the chunk
+      }
       let off = null;
       for (const [a, b] of cur) {
         const prev = s.last.find(([pa, pb]) => a < pb - 0.01 && b > pa + 0.01);
@@ -71,7 +76,12 @@ if (!window.__wavMedia) {
   // ---- main-thread store -------------------------------------------------
   const media = { recs: new Map() }; // key -> {chunks:[{off,data}], bytes}
   window.__wavMedia = media;
+  // YouTube is an SPA — a new video doesn't reload the page, so old chunks
+  // would contaminate the next video. Drop everything on navigation.
+  window.addEventListener('yt-navigate-finish', () => media.recs.clear());
   window.__wavStore = (key, off, data) => {
+    const vid = (location.href.match(/[?&]v=([^&]+)/) || [])[1] || '';
+    if (vid !== media.vid) { media.recs.clear(); media.vid = vid; }
     let rec = media.recs.get(key);
     if (!rec) { rec = { chunks: [], bytes: 0 }; media.recs.set(key, rec); }
     rec.chunks.push({ off, data });
