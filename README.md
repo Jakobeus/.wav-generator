@@ -11,18 +11,20 @@ the whole video or a clip between two timestamps.
 
 ## Usage
 
-- **Start / End** accept `90`, `1:30`, `1:02:30`, or `1:30.5`. Leave End blank for end of video.
+- **Start / End** accept `15s`, `1m30s`, `1:30`, or bare seconds. Leave End blank for end of video.
 - **now** buttons fill the field with the player's current position — scrub the video to mark your clip.
-- The decoded audio is cached for the last video, so cutting several clips back-to-back skips the refetch.
+- The clip must be **buffered**: seek near the clip start and let it play a few seconds first. The popup shows what audio is buffered.
 
 ## How it works
 
+googlevideo stream URLs are single-use/session-bound — replaying them 403s.
+So instead of re-fetching, we capture the bytes the player itself delivers:
+
 | Piece | Role |
 |---|---|
-| `background.js` | `webRequest` listener records every `videoplayback` request the tab emits — fully signed URLs, no de-ciphering needed |
-| `popup.js` | Reads video info via MAIN-world injection, gets best stream URL from the background sniffer |
-| `popup.js` → `clipAndDownload` | Injected into the page (ISOLATED world): fetches the stream (same context the player uses — no CORS issues), `decodeAudioData` → sample-accurate slice → 16-bit WAV → `<a download>` |
-| `sniffer.js` | Extra fetch/XHR hook as a backup URL source |
+| `sniffer.js` | MAIN-world content script (document_start). Hooks `MediaSource.addSourceBuffer` / `SourceBuffer.appendBuffer` and copies every audio segment the player buffers, tagged with its `timestampOffset` → `window.__wavMedia` |
+| `popup.js` → `extractPlayerInfo` | Reads video title/duration + audio buffered ranges |
+| `popup.js` → `clipAndDownload` | Injected on demand (MAIN world): picks the continuous append run covering the clip, concatenates segments → `decodeAudioData` → sample-accurate slice → 16-bit WAV → `<a download>` |
 
 Trimming happens on the decoded `AudioBuffer`, so clips are sample-accurate
 and never lossy — one decode, exact slice out.
@@ -30,6 +32,6 @@ and never lossy — one decode, exact slice out.
 ## Known limits
 
 - Chrome Web Store won't accept YouTube downloaders — side-load only.
-- Ciphered formats are handled by reusing the signed stream URL the player itself fetched (Resource Timing sniff) — press play once if the popup reports no stream. True DRM content still won't work.
+- Only buffered audio is available: whole-video export means letting it buffer through.
+- Capture starts at page load — refresh the tab if the extension was just installed/reloaded.
 - WAV is uncompressed: ~10 MB/min for stereo 44.1 kHz.
-- Long videos mean big decode buffers; only the last one is kept in memory.
