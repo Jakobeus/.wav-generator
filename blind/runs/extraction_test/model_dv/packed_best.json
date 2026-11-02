@@ -1,0 +1,20 @@
+{
+    "submodels": [
+        {
+            "submodel_index": 0,
+            "submodel_name": "channels_3",
+            "best_metric": 0.08803203701972961,
+            "epoch": 28,
+            "step": 232,
+            "checkpoint_path": "runs/extraction_test/model_dv/packed_best_submodel_0.ckpt"
+        },
+        {
+            "submodel_index": 1,
+            "submodel_name": "channels_8",
+            "best_metric": 0.07886400818824768,
+            "epoch": 26,
+            "step": 216,
+            "checkpoint_path": "runs/extraction_test/model_dv/packed_best_submodel_1.ckpt"
+        }
+    ]
+}

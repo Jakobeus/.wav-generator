@@ -1,0 +1,14 @@
+# generated artifacts — never commit
+.venv/
+__pycache__/
+*.pyc
+RemFx/
+remfx_ckpts/
+clips/
+*.flac
+*.m4a
+*.ckpt
+*.onnx
+*.pt
+events.out.tfevents.*
+
