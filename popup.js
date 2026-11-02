@@ -15,12 +15,14 @@ function extractPlayerInfo() {
   let buffered = [];
   let chunks = 0;
   let coverage = []; // captured-audio intervals [[s,e]] from the smallest rec
+  const curVid = (location.href.match(/[?&]v=([^&]+)/) || [])[1] || '';
   try {
     const b = video && video.buffered;
     if (b) for (let i = 0; i < b.length; i++) buffered.push([b.start(i), b.end(i)]);
     const media = window.__wavMedia;
     if (media) {
-      const recs = [...media.recs.values()].filter(r => r.chunks.length);
+      // only this video's streams — stale recs from a previous video are noise
+      const recs = [...media.recs.values()].filter(r => (!r.vid || r.vid === curVid) && r.chunks.length);
       recs.sort((a, z) => a.bytes - z.bytes);
       const rec = recs[0];
       if (rec) {
@@ -38,14 +40,21 @@ function extractPlayerInfo() {
     }
   } catch (_) {}
 
+  let inits = 0;
+  try { inits = (window.__wavMedia && window.__wavMedia.inits.filter(i => !i.vid || i.vid === curVid).length) || 0; } catch (_) {}
+  const ver = window.__wavVer || 0;
+  const dbg = window.__wavDbg || null;
   return {
     videoId: vd.videoId || null,
-    title: vd.title || document.title.replace(/ - YouTube$/, ''),
+    title: vd.title || document.title.replace(/^\(\d+\)\s*/, '').replace(/ - YouTube$/, ''),
     duration: Number(vd.lengthSeconds) || (video ? video.duration : 0),
     currentTime: video ? video.currentTime : 0,
     buffered,
     coverage,
     chunks,
+    inits,
+    ver,
+    dbg,
   };
 }
 
@@ -60,7 +69,8 @@ async function clipAndDownload(start, end, filename) {
   const say = t => { badge.textContent = 'wav: ' + t; };
   try {
     const media = window.__wavMedia;
-    const recs = media ? [...media.recs.values()].filter(r => r.chunks.length) : [];
+    const curVid = (location.href.match(/[?&]v=([^&]+)/) || [])[1] || '';
+    const recs = media ? [...media.recs.values()].filter(r => (!r.vid || r.vid === curVid) && r.chunks.length) : [];
     if (!recs.length) return { error: 'No audio captured yet — press play on the video' };
     // Audio streams are far smaller than video — try smallest first; a
     // video-only stream fails decodeAudioData anyway, so this is how we
@@ -68,6 +78,19 @@ async function clipAndDownload(start, end, filename) {
     recs.sort((a, b) => a.bytes - b.bytes);
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
     let buf = null, t0 = 0, decodedAny = false, trimmed = null;
+
+    // Container signature of a chunk — tells us whether we hold an init
+    // segment or just bare media segments (init was missed).
+    const sigOf = c => {
+      const b = new Uint8Array(c.data.slice(0, 12));
+      if (b[4] === 0x66 && b[5] === 0x74 && b[6] === 0x79 && b[7] === 0x70) return 'mp4-init';  // 'ftyp'
+      if (b[0] === 0x1a && b[1] === 0x45 && b[2] === 0xdf && b[3] === 0xa3) return 'webm-init'; // EBML
+      if (b[0] === 0x1f && b[1] === 0x43 && b[2] === 0xb6 && b[3] === 0x75) return 'webm-seg';  // Cluster
+      const tag = String.fromCharCode(b[4], b[5], b[6], b[7]);
+      if (/^(moof|styp|sidx|emsg|prft|mdat|dash|free)$/.test(tag)) return `mp4-seg(${tag})`;
+      return `other(${tag})`;
+    };
+    const isInit = c => sigOf(c).endsWith('init');
 
     for (const rec of recs) {
       // Split appends into runs continuous in video time (a seek restarts one).
@@ -94,23 +117,40 @@ async function clipAndDownload(start, end, filename) {
           parts.push(c);
           total += c.data.byteLength;
         }
-        const ab = new Uint8Array(total);
-        let off = 0;
-        for (const c of parts) { ab.set(new Uint8Array(c.data), off); off += c.data.byteLength; }
-        say(`decoding ${(total / 1e6).toFixed(1)} MB`);
-        try {
-          const d = await ctx.decodeAudioData(ab.buffer);
-          decodedAny = true;
-          const base = run[0].off;
-          // take the intersection of requested range and decoded coverage
-          if (start < base + d.duration - 0.5 && end > base + 0.5) {
-            buf = d; t0 = base;
-            trimmed = start < base || end > base + d.duration
-              ? [Math.max(start, base), Math.min(end, base + d.duration)]
-              : null;
-            break;
-          }
-        } catch (_) {}
+        // Init segments are required to decode. They come from two places:
+        // embedded in the run (the append was captured), or siphoned from
+        // network responses (init fetch predated our hook). Try each.
+        let initAt = -1;
+        for (let i = 0; i < parts.length; i++) if (isInit(parts[i])) initAt = i;
+        const mediaParts = initAt >= 0 ? parts.slice(initAt + 1) : parts;
+        const cands = [];
+        if (initAt >= 0) cands.push({ init: parts[initAt].data });
+        for (const ini of media.inits || []) if (!ini.vid || ini.vid === curVid) cands.push({ init: ini.data });
+        cands.push({ init: null });
+        if (!mediaParts.length) continue;
+        for (const cand of cands) {
+          const pieces = cand.init ? [cand.init] : [];
+          for (const c of mediaParts) pieces.push(c.data);
+          const total = pieces.reduce((n, d) => n + d.byteLength, 0);
+          const ab = new Uint8Array(total);
+          let off = 0;
+          for (const d of pieces) { ab.set(new Uint8Array(d), off); off += d.byteLength; }
+          say(`decoding ${(total / 1e6).toFixed(1)} MB`);
+          try {
+            const d = await ctx.decodeAudioData(ab.buffer);
+            decodedAny = true;
+            const base = mediaParts[0].off;
+            // take the intersection of requested range and decoded coverage
+            if (start < base + d.duration - 0.5 && end > base + 0.5) {
+              buf = d; t0 = base;
+              trimmed = start < base || end > base + d.duration
+                ? [Math.max(start, base), Math.min(end, base + d.duration)]
+                : null;
+              break;
+            }
+          } catch (_) {}
+        }
+        if (buf) break;
       }
       if (buf) break;
     }
@@ -120,11 +160,14 @@ async function clipAndDownload(start, end, filename) {
         const b = document.querySelector('video').buffered;
         for (let i = 0; i < b.length; i++) ranges.push(`${b.start(i).toFixed(0)}-${b.end(i).toFixed(0)}s`);
       } catch (_) {}
+      const desc = recs.map(r =>
+        `${r.chunks.length}ch/${(r.bytes / 1e6).toFixed(1)}MB/${r.chunks.length ? sigOf(r.chunks[0]) : '-'}`).join(' · ');
+      const nInit = (media.inits || []).length;
       return decodedAny
         ? { error: `Clip not fully buffered. Player has ${ranges.join(', ') || 'nothing'} — ` +
                    `seek just before the clip and let it play, then retry.` }
-        : { error: `Segments captured (${recs.reduce((n, r) => n + r.chunks.length, 0)}) but won't decode — ` +
-                   `init segment was likely missed. Hard-refresh the tab, press play, retry.` };
+        : { error: `Won't decode — ${desc} · ${nInit} siphoned-init. If no -init, ` +
+                   `toggle video quality once (or hard-refresh+play) to force re-init, then retry.` };
     }
 
     say('encoding wav');
@@ -200,10 +243,13 @@ function parseTime(s) {
 }
 
 function fmtTime(sec) {
-  sec = Math.max(0, Math.floor(sec));
-  const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
-  const mmss = `${m}:${String(s).padStart(2, '0')}`;
-  return h ? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}` : mmss;
+  sec = Math.max(0, Math.round(sec * 10) / 10); // 0.1s resolution
+  const whole = Math.floor(sec);
+  const frac = Math.round((sec - whole) * 10);
+  const h = Math.floor(whole / 3600), m = Math.floor((whole % 3600) / 60), s = whole % 60;
+  const ss = String(s).padStart(2, '0') + (frac ? `.${frac}` : '');
+  const mmss = `${m}:${ss}`;
+  return h ? `${h}:${String(m).padStart(2, '0')}:${ss}` : mmss;
 }
 
 const fmtRanges = rs =>
@@ -228,9 +274,11 @@ async function refreshInfo(fillTimes) {
     $('end').value = '';
   }
   $('title').textContent = info.title;
+  const d = info.dbg;
+  const dbgTxt = d ? ` · v${info.ver} hook@${d.hook}ms 1st@${d.first ?? '-'} ftyp:${d.ftyp} w:${d.wInj}/${d.wFail}` : ` · v${info.ver || 'old'}`;
   $('meta').textContent = info.coverage.length
-    ? `${fmtTime(info.duration)} · captured ${fmtRanges(info.coverage)} · ${info.chunks} segments`
-    : `${fmtTime(info.duration)} · no audio captured — press play`;
+    ? `${fmtTime(info.duration)} · captured ${fmtRanges(info.coverage)} · ${info.chunks} seg · ${info.inits} init${dbgTxt}`
+    : `${fmtTime(info.duration)} · no audio captured — press play${dbgTxt}`;
   $('go').disabled = !info.chunks;
   return info;
 }
@@ -247,7 +295,8 @@ async function currentTime() {
 function defaultFilename(start, end) {
   const base = sanitize(info.title || info.videoId || 'clip');
   const clipped = start > 0 || end < info.duration;
-  return clipped ? `${base} [${fmtTime(start)}-${fmtTime(end)}].wav` : `${base}.wav`;
+  const fsec = t => `${Math.round(t * 100) / 100}s`; // colon-free, decimal-safe
+  return clipped ? `${base} [${fsec(start)}-${fsec(end)}].wav` : `${base}.wav`;
 }
 
 async function init() {

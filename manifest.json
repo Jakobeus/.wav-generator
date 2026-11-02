@@ -15,9 +15,21 @@
   "content_scripts": [
     {
       "matches": ["https://*.youtube.com/*"],
+      "js": ["inject.js"],
+      "world": "ISOLATED",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://*.youtube.com/*"],
       "js": ["sniffer.js"],
       "world": "MAIN",
       "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["sniffer.js"],
+      "matches": ["https://*.youtube.com/*"]
     }
   ]
 }
