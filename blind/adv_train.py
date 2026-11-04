@@ -212,7 +212,9 @@ def main():
     p.add_argument("--critics", nargs="+", default=["mpd", "msd", "stft"],
                    choices=["mpd", "msd", "stft"])
     p.add_argument("--probe", default=None,
-                   help="clean wav to render through G every 500 steps")
+                   help="clean wav to render through G every probe-every steps")
+    p.add_argument("--probe-every", type=int, default=500)
+    p.add_argument("--export-every", type=int, default=2000)
     args = p.parse_args()
 
     sys.path.insert(0, str(Path(__file__).parent / "RemFx"))
@@ -297,7 +299,7 @@ def main():
                   f"fm {fm.item():.3f}  cont {cont.item():.3f}  pit {pit.item():.3f}  | {acc_s}",
                   flush=True)
 
-        if args.probe and step % 500 == 0:
+        if args.probe and step % args.probe_every == 0:
             try:
                 ema.eval()
                 with torch.no_grad():
@@ -314,7 +316,7 @@ def main():
             except Exception as e:
                 print(f"  probe failed (non-fatal): {e}")
 
-        if step % 2000 == 0:
+        if step % args.export_every == 0:
             ema.sample_rate = SR
             ema.export(modeldir, basename=f"adv_step{step}")
             print(f"  saved {modeldir}/adv_step{step}.nam", flush=True)
