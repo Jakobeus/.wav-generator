@@ -1,25 +1,32 @@
 #!/usr/bin/env python3
 """
-Adversarial tone transfer — multi-critic version (HiFi-GAN-style).
+Adversarial tone transfer — multi-critic, hybrid reverb generator.
 
-  G: PackedWaveNet (waveform->waveform, same net as the NAM trainer, so the
-     result still exports to .nam). Optional warm-start from a pair-trained
-     .ckpt. Training-time scaffolding only — critics are discarded after.
+  G = HybridG: PackedWaveNet dry path (drive/EQ/cab, ~85ms) + parallel
+      reverb field:
+        tail1 = learned FIR  (static, time-invariant room)
+        tail2 = input-gated FIR driven by a frame-level transformer gate
+                (nonlinear reverb: gated/ducked/selective tails; degenerates
+                to a second linear tail if modulation is unused)
+      out = dry + w1·tail1 + w2·tail2
+      Identity anchors (envelope/pitch) apply to the DRY PATH ONLY —
+      tails are allowed to outlast the input envelope by design.
 
-  Critic families (each blind to what the others police):
+  Critics (training-time scaffolding, discarded after):
     MPD  : waveform folded at periods {2,3,5,7,11} — periodicity/phase
     MSD  : raw waveform avg-pooled {1x,2x,4x} — waveform shape + dynamics
-    STFT : spectrograms at n_fft {512,2048,8192} — spectral texture, 3 resolutions
+    STFT : spectrograms at n_fft {512,2048,8192} + mel-scaled — spectral texture
+    LONG : WaveDisc(4) + SpecDisc(4096) on the full 1.5s window — tail grading
+    (short-view critics see a random internal 0.34s subcrop per call)
 
-  Losses: hinge adversarial (summed over critics) + feature matching on each
-  critic's intermediate layers + multi-scale envelope content loss.
-  DiffAugment (gain/polarity/circular-shift) on real+fake — no EQ tilt:
-  spectral envelope is the feature D is SUPPOSED to police.
+  Losses: hinge adversarial (summed) + feature matching + dry-path envelope
+  and pitch-consistency. DiffAugment (gain/polarity/shift/mild EQ tilt)
+  on real+fake.
 
 Usage:
   python adv_train.py --di di1.wav di2.wav --ref wet_stem.wav \
       --modeldir runs/x/model_adv [--init-ckpt pair.ckpt] [--steps 20000]
-      [--device cuda] [--critics mpd msd stft]
+      [--device cuda] [--critics mpd msd stft long]
 """
 import argparse
 import copy
@@ -33,7 +40,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 SR = 48000
-CHUNK = 16384  # ~0.34s @ 48k
+CHUNK = 73728          # ~1.536s @ 48k — covers the tail
+SHORT = 16384          # ~0.34s subcrop for texture critics
+TAIL = 73728           # learned reverb field length
 TARGET_RMS = 10 ** (-18 / 20)
 sn = nn.utils.spectral_norm
 
@@ -54,11 +63,8 @@ def rand_crop(x, n):
 
 
 def augment(x, tilt_db=0.0):
-    """DiffAugment: same family of transforms on real and fake.
-    gain ±6dB, polarity flip, circular shift — invariants D must learn.
-    tilt_db>0 adds a random spectral slope ±tilt_db (20Hz-20kHz, pivot ~632Hz):
-    mild values stop D memorizing the ref's exact EQ fingerprint; large values
-    would dissolve the spectral target itself — keep it small."""
+    """DiffAugment on real and fake alike. gain ±6dB / polarity flip /
+    circular shift; tilt_db>0 adds a random spectral slope ±tilt_db."""
     B, T = x.shape
     g = torch.rand(B, 1, device=x.device) * 12 - 6
     x = x * (10 ** (g / 20))
@@ -69,7 +75,7 @@ def augment(x, tilt_db=0.0):
     if tilt_db > 0:
         X = torch.fft.rfft(x)
         f = torch.fft.rfftfreq(T, 1 / SR, device=x.device).clamp(min=20)
-        u = torch.log(f / 20) / np.log(20000 / 20)            # 0..1 across band
+        u = torch.log(f / 20) / np.log(20000 / 20)
         s = (torch.rand(B, 1, device=x.device) * 2 - 1) * tilt_db
         x = torch.fft.irfft(X * (10 ** (s * (u - 0.5) * 2 / 20)), n=T)
     return x
@@ -79,9 +85,75 @@ def _mean_feats(feats):
     return [f.mean(dim=(2, 3)) if f.dim() == 4 else f.mean(dim=2) for f in feats]
 
 
+def fft_fir(x, h):
+    """Causal FIR via FFT: y[t] = sum_k h[k] x[t-k]. Fully differentiable —
+    tap gradients collect output error arriving at their delay."""
+    n = x.shape[-1] + h.shape[-1] - 1
+    nfft = 1 << (n - 1).bit_length()
+    y = torch.fft.irfft(torch.fft.rfft(x, nfft) * torch.fft.rfft(h, nfft), nfft)
+    return y[..., :x.shape[-1]]
+
+
+# ----------------------------- generator -----------------------------
+
+class HybridG(nn.Module):
+    """Waveshaper + parallel reverb field. dry: PackedWaveNet (wrapped).
+    tail1: learned FIR (static). tail2: FIR over input gated per-frame by a
+    small transformer context net (nonlinear/selective tails)."""
+
+    FRAME = 480  # 10ms gate frames
+
+    def __init__(self, wavenet, sub, tail=TAIL, d_model=128, n_layers=2):
+        super().__init__()
+        self.dry = wavenet
+        self.sub = sub
+        # FIR taps: tiny decaying noise — zero-init deadlocks gradients
+        t = torch.arange(tail, dtype=torch.float32)
+        env = torch.exp(-3.0 * t / tail)
+        self.h1 = nn.Parameter(torch.randn(tail) * 1e-3 * env)
+        self.h2 = nn.Parameter(torch.randn(tail) * 1e-3 * env)
+        self.w1 = nn.Parameter(torch.tensor(0.3))
+        self.w2 = nn.Parameter(torch.tensor(0.3))
+        # gate context: frame encoder -> transformer -> per-frame gate
+        self.enc = nn.Conv1d(1, d_model, self.FRAME, stride=self.FRAME // 2)
+        self.pos = nn.Parameter(torch.randn(1, 4096, d_model) * 0.02)
+        layer = nn.TransformerEncoderLayer(
+            d_model, 4, d_model * 4, batch_first=True, norm_first=True)
+        self.tr = nn.TransformerEncoder(layer, n_layers)
+        self.gate = nn.Linear(d_model, 1)
+
+    def forward(self, x):                       # x: (B,T) DI -> (out, dry)
+        B, T = x.shape
+        dry = self.dry(x)[:, self.sub]          # nonlinear tone path
+        e = self.enc(dry.unsqueeze(1)).transpose(1, 2)        # (B,F,d)
+        e = e + self.pos[:, :e.shape[1]]
+        g = torch.sigmoid(self.gate(self.tr(e)))              # (B,F,1)
+        g = F.interpolate(g.transpose(1, 2), size=T).squeeze(1)  # (B,T)
+        tail1 = fft_fir(dry, self.h1)
+        tail2 = fft_fir(dry * (2 * g), self.h2)               # input-gated tail
+        out = dry + self.w1 * tail1 + self.w2 * tail2
+        return out, dry
+
+
+# ----------------------------- critics -----------------------------
+
+class ShortView(nn.Module):
+    """Wraps a critic: sees a random internal SHORT subcrop per call —
+    texture judgment at 0.34s inside the 1.5s batch window."""
+
+    def __init__(self, d, view=SHORT):
+        super().__init__()
+        self.d, self.view = d, view
+
+    def forward(self, x, return_feats=False):
+        if x.shape[-1] > self.view:
+            i = torch.randint(0, x.shape[-1] - self.view + 1, (1,)).item()
+            x = x[..., i:i + self.view]
+        return self.d(x, return_feats=return_feats)
+
+
 class PeriodDisc(nn.Module):
-    """HiFi-GAN MPD: fold waveform at period p — catches periodicity/phase
-    artifacts that spectral critics cannot see."""
+    """Fold waveform at period p — periodicity/phase police."""
 
     def __init__(self, p):
         super().__init__()
@@ -97,7 +169,7 @@ class PeriodDisc(nn.Module):
         pad = (-T) % self.p
         if pad:
             x = F.pad(x, (0, pad))
-        h = x.view(B, 1, -1, self.p)              # fold: (B,1,T/p,p)
+        h = x.view(B, 1, -1, self.p)
         feats = []
         for c in self.convs:
             h = F.leaky_relu(c(h), 0.2)
@@ -107,8 +179,7 @@ class PeriodDisc(nn.Module):
 
 
 class WaveDisc(nn.Module):
-    """MSD-style: raw waveform at decimation scale s — waveform shape (s=1)
-    through gross envelope/dynamics (s=4)."""
+    """Raw waveform at decimation scale s — waveform shape + dynamics."""
 
     def __init__(self, scale):
         super().__init__()
@@ -132,8 +203,7 @@ class WaveDisc(nn.Module):
 
 
 class SpecDisc(nn.Module):
-    """Spectrogram critic at n_fft resolution — small n_fft polices
-    transient/time detail, large n_fft polices harmonic/freq detail."""
+    """Spectrogram critic at n_fft resolution."""
 
     def __init__(self, n_fft):
         super().__init__()
@@ -157,18 +227,47 @@ class SpecDisc(nn.Module):
         return (logit, _mean_feats(feats)) if return_feats else logit
 
 
+class MelSpecDisc(nn.Module):
+    """Perceptual-scale critic — mel bins weight frequency like the ear."""
+
+    def __init__(self):
+        super().__init__()
+        import torchaudio.transforms as T
+        self.mel = T.MelSpectrogram(
+            sample_rate=SR, n_fft=2048, hop_length=512, win_length=2048,
+            n_mels=128, f_min=60, f_max=16000, power=2.0)
+        chans = [1, 32, 64, 128, 256]
+        self.convs = nn.ModuleList(
+            sn(nn.Conv2d(a, b, 5, stride=2, padding=2))
+            for a, b in zip(chans, chans[1:]))
+        self.head = sn(nn.Conv2d(256, 1, 1))
+
+    def forward(self, x, return_feats=False):
+        h = torch.log(self.mel(x) + 1e-6).unsqueeze(1)
+        feats = []
+        for c in self.convs:
+            h = F.leaky_relu(c(h), 0.2)
+            feats.append(h)
+        logit = self.head(h).mean(dim=(2, 3)).squeeze(-1)
+        return (logit, _mean_feats(feats)) if return_feats else logit
+
+
 def build_critics(kind):
     if kind == "mpd":
-        return [PeriodDisc(p) for p in (2, 3, 5, 7, 11)]
+        return [ShortView(PeriodDisc(p)) for p in (2, 3, 5, 7, 11)]
     if kind == "msd":
-        return [WaveDisc(s) for s in (1, 2, 4)]
+        return [ShortView(WaveDisc(s)) for s in (1, 2, 4)]
     if kind == "stft":
-        return [SpecDisc(n) for n in (512, 2048, 8192)]
+        return [ShortView(SpecDisc(n)) for n in (512, 2048, 8192)] \
+            + [ShortView(MelSpecDisc())]
+    if kind == "long":
+        # full-window tail graders: gross dynamics + fine spectral decay
+        return [WaveDisc(4), SpecDisc(4096)]
     raise ValueError(kind)
 
 
 def env_loss(a, b):
-    """Amplitude-envelope L1 at multiple frame sizes — keeps timing/dynamics."""
+    """Envelope L1 at two frame sizes — timing/dynamics anchor (dry path)."""
     l = 0.0
     for w in (128, 1024):
         ea = F.avg_pool1d(a.abs().unsqueeze(1), w, w).squeeze(1)
@@ -178,10 +277,7 @@ def env_loss(a, b):
 
 
 def pitch_loss(x, y):
-    """F0-consistency, detector-free: normalized autocorrelation profiles
-    encode the period — L1 over the guitar lag range (80-1200Hz) penalizes
-    pitch drift/octave jumps. Differentiable; harmonic-content changes only
-    soften autocorr peaks, they don't move them."""
+    """F0-consistency via normalized autocorrelation profiles (80-1200Hz)."""
     T = x.shape[-1]
     ax = torch.fft.irfft(torch.fft.rfft(x).abs() ** 2, n=T)[:, :600]
     ay = torch.fft.irfft(torch.fft.rfft(y).abs() ** 2, n=T)[:, :600]
@@ -199,20 +295,18 @@ def main():
     p.add_argument("--di", nargs="+", required=True, help="clean DI wavs")
     p.add_argument("--ref", required=True, help="wet reference stem")
     p.add_argument("--modeldir", required=True)
-    p.add_argument("--init-ckpt", default=None, help="warm-start G from .ckpt")
+    p.add_argument("--init-ckpt", default=None, help="warm-start G dry path")
     p.add_argument("--steps", type=int, default=20000)
     p.add_argument("--batch", type=int, default=8)
     p.add_argument("--lam-content", type=float, default=50.0)
     p.add_argument("--lam-fm", type=float, default=2.0)
-    p.add_argument("--lam-pitch", type=float, default=5.0,
-                   help="autocorrelation F0-consistency weight (0 disables)")
-    p.add_argument("--aug-tilt", type=float, default=2.0,
-                   help="random EQ tilt in dB applied to real+fake (0 disables)")
+    p.add_argument("--lam-pitch", type=float, default=5.0)
+    p.add_argument("--aug-tilt", type=float, default=2.0)
     p.add_argument("--device", default=None)
-    p.add_argument("--critics", nargs="+", default=["mpd", "msd", "stft"],
-                   choices=["mpd", "msd", "stft"])
-    p.add_argument("--probe", default=None,
-                   help="clean wav to render through G every probe-every steps")
+    p.add_argument("--critics", nargs="+",
+                   default=["mpd", "msd", "stft", "long"],
+                   choices=["mpd", "msd", "stft", "long"])
+    p.add_argument("--probe", default=None)
     p.add_argument("--probe-every", type=int, default=500)
     p.add_argument("--export-every", type=int, default=2000)
     args = p.parse_args()
@@ -229,16 +323,18 @@ def main():
     lm = cls.init_from_config(cfg)
     if args.init_ckpt:
         lm = cls.load_from_checkpoint(args.init_ckpt, **cls.parse_config(cfg))
-        print(f"G warm-started from {args.init_ckpt}")
-    G = lm.net.to(dev)
+        print(f"G dry path warm-started from {args.init_ckpt}")
+    SUB = 1
+    G = HybridG(lm.net, SUB).to(dev)
     G.train()
-    ema = copy.deepcopy(G).eval()               # EMA copy -> probe + export
+    ema = copy.deepcopy(G).eval()               # EMA -> probe + export
     for q in ema.parameters():
         q.requires_grad_(False)
 
     critics = nn.ModuleList(
         [d for kind in args.critics for d in build_critics(kind)]).to(dev)
-    names = [f"{type(d).__name__}{getattr(d, 'p', getattr(d, 'scale', getattr(d, 'n_fft', '')))}"
+    names = [f"{type(getattr(d,'d',d)).__name__}"
+             f"{getattr(getattr(d,'d',d),'p',getattr(getattr(d,'d',d),'scale',getattr(getattr(d,'d',d),'n_fft','')))}"
              for d in critics]
     print(f"critics ({len(critics)}): {names}")
 
@@ -251,7 +347,6 @@ def main():
 
     opt_g = torch.optim.Adam(G.parameters(), 1e-4, betas=(0.5, 0.9))
     opt_d = torch.optim.Adam(critics.parameters(), 1e-4, betas=(0.5, 0.9))
-    SUB = 1  # packed submodel (channels_8)
     d_loss = torch.tensor(0.0)
     accs = torch.zeros(len(critics))
 
@@ -260,9 +355,9 @@ def main():
                           for i in np.random.randint(0, len(di), args.batch)]).to(dev)
         rb = torch.stack([rand_crop(ref, CHUNK) for _ in range(args.batch)]).to(dev)
 
-        # --- D step: every critic sees augmented real + fake ---
+        # --- D step ---
         with torch.no_grad():
-            fake = G(xb)[:, SUB]
+            fake, _ = G(xb)
         d_loss = torch.zeros((), device=dev)
         for i, D in enumerate(critics):
             d_real = D(augment(rb, args.aug_tilt))
@@ -271,8 +366,8 @@ def main():
             accs[i] = ((d_real > 0).float().mean() + (d_fake < 0).float().mean()) / 2
         opt_d.zero_grad(); d_loss.backward(); opt_d.step()
 
-        # --- G step: fool every critic + match their features + keep playing ---
-        fake = G(xb)[:, SUB]
+        # --- G step ---
+        fake, dry = G(xb)
         fa = augment(fake, args.aug_tilt)
         ra = augment(rb, args.aug_tilt)
         adv = torch.zeros((), device=dev)
@@ -284,8 +379,8 @@ def main():
             adv = adv - logit.mean()
             fm = fm + sum(F.l1_loss(ff.mean(0), fr.mean(0))
                           for ff, fr in zip(f_fake, f_real))
-        cont = env_loss(fake, xb)
-        pit = pitch_loss(xb, fake) if args.lam_pitch else torch.tensor(0.0)
+        cont = env_loss(dry, xb)                # anchors on DRY path only
+        pit = pitch_loss(xb, dry) if args.lam_pitch else torch.tensor(0.0)
         g_loss = adv + args.lam_fm * fm + args.lam_content * cont \
             + args.lam_pitch * pit
         opt_g.zero_grad(); g_loss.backward(); opt_g.step()
@@ -304,8 +399,11 @@ def main():
                 ema.eval()
                 with torch.no_grad():
                     px = norm(load_mono(args.probe)).to(dev)
-                    py = ema(px[None, :])[0, SUB].cpu().numpy()
+                    py, pdy = ema(px[None, :])
+                    py = py[0].cpu().numpy()
+                    pdy = pdy[0].cpu().numpy()
                 sf.write(str(modeldir / "probe.wav"), py, SR)
+                sf.write(str(modeldir / "probe_dry.wav"), pdy, SR)
                 X = np.abs(np.fft.rfft(px.cpu().numpy())) ** 2
                 Y = np.abs(np.fft.rfft(py)) ** 2
                 fr = np.fft.rfftfreq(len(px), 1 / SR)
@@ -317,14 +415,15 @@ def main():
                 print(f"  probe failed (non-fatal): {e}")
 
         if step % args.export_every == 0:
-            ema.sample_rate = SR
-            ema.export(modeldir, basename=f"adv_step{step}")
-            print(f"  saved {modeldir}/adv_step{step}.nam", flush=True)
+            path = modeldir / f"adv_step{step}.pt"
+            torch.save({"state_dict": ema.state_dict(), "kind": "hybrid",
+                        "sr": SR, "sub": SUB}, path)
+            print(f"  saved {path}", flush=True)
 
     ema.eval()
-    ema.sample_rate = SR
-    ema.export(modeldir, basename="adv_final")
-    print(f"done -> {modeldir}/adv_final.nam")
+    torch.save({"state_dict": ema.state_dict(), "kind": "hybrid",
+                "sr": SR, "sub": SUB}, modeldir / "adv_final.pt")
+    print(f"done -> {modeldir}/adv_final.pt  (hybrid net — NOT .nam; needs adv_train.HybridG to load)")
 
 
 if __name__ == "__main__":

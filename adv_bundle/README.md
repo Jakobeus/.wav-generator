@@ -108,8 +108,11 @@ step  d_loss   adv      fm      cont    pit    | per-critic accs
 - `modeldir/probe.wav` — probe_di.wav through the EMA generator, refreshed
   every `--probe-every` (default 500) steps. **Listen to this** — the real
   metric is whether your DI starts sounding like it went through his rig.
-- `modeldir/adv_step{N}.nam` — every `--export-every` (2000) steps.
-- `adv_final.nam` at the end. Load in the NAM plugin; feed it your DI.
+- `modeldir/adv_step{N}.pt` — every `--export-every` (2000) steps.
+- `adv_final.pt` at the end. **Hybrid net — NOT .nam** (the reverb field can't
+  live inside a PackedWaveNet). Render a song:
+  `python apply_hybrid.py --model adv_final.pt --in song_di.wav --out toned.wav --norm-input`
+  It streams ~1.5s windows with tail context — arbitrary lengths, no seams.
 
 ## Knobs (when to turn which)
 
