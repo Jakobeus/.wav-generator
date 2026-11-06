@@ -1,0 +1,294 @@
+critics (11): ['PeriodDisc2', 'PeriodDisc3', 'PeriodDisc5', 'PeriodDisc7', 'PeriodDisc11', 'WaveDisc1', 'WaveDisc2', 'WaveDisc4', 'SpecDisc512', 'SpecDisc2048', 'SpecDisc8192']
+device cuda | DI: ['60.0s', '20.0s', '84.5s']  ref: 171.0s
+critic low-pass: auto -> 7100 Hz (ref cutoff)
+   100  d_loss 15.087  adv +4.620  fm 2.854  cont 1.326  pit 0.933  | PeriodDisc2:0.52 PeriodDisc3:0.52 PeriodDisc5:0.50 PeriodDisc7:0.51 PeriodDisc11:0.54 WaveDisc1:0.74 WaveDisc2:0.73 WaveDisc4:0.74 SpecDisc512:0.88 SpecDisc2048:0.89 SpecDisc8192:0.92
+   200  d_loss 10.794  adv +7.813  fm 3.348  cont 0.858  pit 0.762  | PeriodDisc2:0.77 PeriodDisc3:0.72 PeriodDisc5:0.71 PeriodDisc7:0.68 PeriodDisc11:0.74 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.90 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.95
+   300  d_loss 9.185  adv +10.724  fm 3.335  cont 0.400  pit 0.428  | PeriodDisc2:0.69 PeriodDisc3:0.78 PeriodDisc5:0.64 PeriodDisc7:0.73 PeriodDisc11:0.63 WaveDisc1:0.97 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:0.97 SpecDisc8192:0.93
+   400  d_loss 8.197  adv +12.091  fm 3.215  cont 0.361  pit 0.255  | PeriodDisc2:0.77 PeriodDisc3:0.85 PeriodDisc5:0.61 PeriodDisc7:0.74 PeriodDisc11:0.61 WaveDisc1:0.97 WaveDisc2:0.96 WaveDisc4:0.98 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.91
+   500  d_loss 7.517  adv +12.809  fm 2.988  cont 0.382  pit 0.182  | PeriodDisc2:0.90 PeriodDisc3:0.95 PeriodDisc5:0.63 PeriodDisc7:0.69 PeriodDisc11:0.63 WaveDisc1:0.98 WaveDisc2:0.98 WaveDisc4:0.99 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.89
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.019, '300-1200': 0.014, '1200-4000': 0.0}
+   600  d_loss 6.815  adv +13.863  fm 2.826  cont 0.396  pit 0.156  | PeriodDisc2:0.95 PeriodDisc3:0.97 PeriodDisc5:0.67 PeriodDisc7:0.72 PeriodDisc11:0.67 WaveDisc1:0.98 WaveDisc2:0.99 WaveDisc4:0.99 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.92
+   700  d_loss 6.404  adv +14.455  fm 2.675  cont 0.434  pit 0.140  | PeriodDisc2:0.96 PeriodDisc3:0.95 PeriodDisc5:0.78 PeriodDisc7:0.75 PeriodDisc11:0.76 WaveDisc1:0.98 WaveDisc2:0.99 WaveDisc4:0.99 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+   800  d_loss 10.254  adv +9.901  fm 2.071  cont 0.514  pit 0.083  | PeriodDisc2:0.76 PeriodDisc3:0.79 PeriodDisc5:0.65 PeriodDisc7:0.65 PeriodDisc11:0.63 WaveDisc1:0.84 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:0.99 SpecDisc2048:0.99 SpecDisc8192:0.96
+   900  d_loss 11.170  adv +9.235  fm 1.913  cont 0.380  pit 0.062  | PeriodDisc2:0.69 PeriodDisc3:0.66 PeriodDisc5:0.62 PeriodDisc7:0.74 PeriodDisc11:0.61 WaveDisc1:0.80 WaveDisc2:0.90 WaveDisc4:0.90 SpecDisc512:0.98 SpecDisc2048:0.99 SpecDisc8192:0.96
+  1000  d_loss 11.014  adv +9.262  fm 2.119  cont 0.282  pit 0.052  | PeriodDisc2:0.70 PeriodDisc3:0.67 PeriodDisc5:0.64 PeriodDisc7:0.67 PeriodDisc11:0.61 WaveDisc1:0.83 WaveDisc2:0.88 WaveDisc4:0.89 SpecDisc512:0.99 SpecDisc2048:0.98 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.111, '300-1200': 0.096, '1200-4000': 0.002}
+  1100  d_loss 10.740  adv +9.535  fm 2.146  cont 0.273  pit 0.050  | PeriodDisc2:0.70 PeriodDisc3:0.67 PeriodDisc5:0.62 PeriodDisc7:0.64 PeriodDisc11:0.62 WaveDisc1:0.87 WaveDisc2:0.89 WaveDisc4:0.88 SpecDisc512:0.99 SpecDisc2048:0.98 SpecDisc8192:0.96
+  1200  d_loss 10.156  adv +9.957  fm 2.214  cont 0.265  pit 0.050  | PeriodDisc2:0.71 PeriodDisc3:0.69 PeriodDisc5:0.64 PeriodDisc7:0.65 PeriodDisc11:0.62 WaveDisc1:0.89 WaveDisc2:0.91 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.98 SpecDisc8192:0.97
+  1300  d_loss 10.221  adv +9.667  fm 2.167  cont 0.239  pit 0.048  | PeriodDisc2:0.72 PeriodDisc3:0.72 PeriodDisc5:0.66 PeriodDisc7:0.67 PeriodDisc11:0.63 WaveDisc1:0.89 WaveDisc2:0.90 WaveDisc4:0.90 SpecDisc512:0.99 SpecDisc2048:0.98 SpecDisc8192:0.96
+  1400  d_loss 9.892  adv +9.931  fm 2.283  cont 0.224  pit 0.049  | PeriodDisc2:0.73 PeriodDisc3:0.72 PeriodDisc5:0.66 PeriodDisc7:0.67 PeriodDisc11:0.63 WaveDisc1:0.91 WaveDisc2:0.90 WaveDisc4:0.89 SpecDisc512:1.00 SpecDisc2048:0.98 SpecDisc8192:0.97
+  1500  d_loss 9.544  adv +10.318  fm 2.364  cont 0.224  pit 0.050  | PeriodDisc2:0.74 PeriodDisc3:0.73 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.64 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.91 SpecDisc512:1.00 SpecDisc2048:0.98 SpecDisc8192:0.97
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.253, '300-1200': 0.257, '1200-4000': 0.006}
+  1600  d_loss 9.703  adv +10.228  fm 2.232  cont 0.223  pit 0.050  | PeriodDisc2:0.72 PeriodDisc3:0.72 PeriodDisc5:0.67 PeriodDisc7:0.69 PeriodDisc11:0.64 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.91 SpecDisc512:1.00 SpecDisc2048:0.98 SpecDisc8192:0.97
+  1700  d_loss 9.449  adv +10.177  fm 2.297  cont 0.217  pit 0.050  | PeriodDisc2:0.72 PeriodDisc3:0.71 PeriodDisc5:0.69 PeriodDisc7:0.71 PeriodDisc11:0.66 WaveDisc1:0.93 WaveDisc2:0.91 WaveDisc4:0.91 SpecDisc512:1.00 SpecDisc2048:0.98 SpecDisc8192:0.97
+  1800  d_loss 9.184  adv +10.481  fm 2.408  cont 0.219  pit 0.053  | PeriodDisc2:0.74 PeriodDisc3:0.73 PeriodDisc5:0.71 PeriodDisc7:0.71 PeriodDisc11:0.66 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.98 SpecDisc8192:0.97
+  1900  d_loss 9.236  adv +10.500  fm 2.314  cont 0.219  pit 0.055  | PeriodDisc2:0.73 PeriodDisc3:0.73 PeriodDisc5:0.71 PeriodDisc7:0.74 PeriodDisc11:0.66 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.98 SpecDisc8192:0.97
+  2000  d_loss 9.286  adv +10.324  fm 2.341  cont 0.204  pit 0.052  | PeriodDisc2:0.72 PeriodDisc3:0.72 PeriodDisc5:0.73 PeriodDisc7:0.75 PeriodDisc11:0.67 WaveDisc1:0.93 WaveDisc2:0.91 WaveDisc4:0.91 SpecDisc512:1.00 SpecDisc2048:0.98 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.358, '300-1200': 0.393, '1200-4000': 0.012}
+  saved runs\fme_full\model_adv_v2/adv_step2000.nam
+  2100  d_loss 9.200  adv +10.391  fm 2.297  cont 0.205  pit 0.054  | PeriodDisc2:0.72 PeriodDisc3:0.71 PeriodDisc5:0.73 PeriodDisc7:0.76 PeriodDisc11:0.66 WaveDisc1:0.94 WaveDisc2:0.91 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  2200  d_loss 9.104  adv +10.505  fm 2.277  cont 0.213  pit 0.055  | PeriodDisc2:0.72 PeriodDisc3:0.72 PeriodDisc5:0.74 PeriodDisc7:0.77 PeriodDisc11:0.67 WaveDisc1:0.94 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.97
+  2300  d_loss 9.048  adv +10.519  fm 2.252  cont 0.223  pit 0.057  | PeriodDisc2:0.72 PeriodDisc3:0.72 PeriodDisc5:0.74 PeriodDisc7:0.77 PeriodDisc11:0.68 WaveDisc1:0.94 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.97
+  2400  d_loss 9.242  adv +10.292  fm 2.172  cont 0.214  pit 0.056  | PeriodDisc2:0.71 PeriodDisc3:0.70 PeriodDisc5:0.72 PeriodDisc7:0.77 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  2500  d_loss 9.008  adv +10.590  fm 2.262  cont 0.216  pit 0.056  | PeriodDisc2:0.71 PeriodDisc3:0.71 PeriodDisc5:0.74 PeriodDisc7:0.78 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.407, '300-1200': 0.472, '1200-4000': 0.018}
+  2600  d_loss 9.220  adv +10.314  fm 2.198  cont 0.212  pit 0.058  | PeriodDisc2:0.71 PeriodDisc3:0.71 PeriodDisc5:0.74 PeriodDisc7:0.79 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.98 SpecDisc8192:0.96
+  2700  d_loss 9.063  adv +10.398  fm 2.120  cont 0.222  pit 0.060  | PeriodDisc2:0.70 PeriodDisc3:0.71 PeriodDisc5:0.73 PeriodDisc7:0.79 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  2800  d_loss 9.036  adv +10.651  fm 2.125  cont 0.221  pit 0.063  | PeriodDisc2:0.71 PeriodDisc3:0.71 PeriodDisc5:0.73 PeriodDisc7:0.79 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  2900  d_loss 9.026  adv +10.440  fm 2.103  cont 0.227  pit 0.065  | PeriodDisc2:0.71 PeriodDisc3:0.71 PeriodDisc5:0.73 PeriodDisc7:0.79 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  3000  d_loss 9.161  adv +10.314  fm 1.978  cont 0.232  pit 0.065  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.72 PeriodDisc7:0.78 PeriodDisc11:0.69 WaveDisc1:0.94 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.42, '300-1200': 0.51, '1200-4000': 0.025}
+  3100  d_loss 9.111  adv +10.411  fm 2.070  cont 0.222  pit 0.067  | PeriodDisc2:0.70 PeriodDisc3:0.70 PeriodDisc5:0.72 PeriodDisc7:0.78 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.97
+  3200  d_loss 9.037  adv +10.477  fm 2.016  cont 0.226  pit 0.067  | PeriodDisc2:0.70 PeriodDisc3:0.71 PeriodDisc5:0.72 PeriodDisc7:0.79 PeriodDisc11:0.70 WaveDisc1:0.94 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  3300  d_loss 9.284  adv +10.177  fm 1.996  cont 0.224  pit 0.068  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.71 PeriodDisc7:0.77 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  3400  d_loss 9.236  adv +10.261  fm 1.917  cont 0.231  pit 0.069  | PeriodDisc2:0.68 PeriodDisc3:0.70 PeriodDisc5:0.70 PeriodDisc7:0.79 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.94 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  3500  d_loss 9.112  adv +10.448  fm 2.042  cont 0.234  pit 0.072  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.70 PeriodDisc7:0.77 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.42, '300-1200': 0.53, '1200-4000': 0.032}
+  3600  d_loss 9.380  adv +10.130  fm 1.914  cont 0.241  pit 0.074  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.70 PeriodDisc7:0.77 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.92 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  3700  d_loss 9.467  adv +9.962  fm 1.891  cont 0.241  pit 0.076  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.76 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  3800  d_loss 9.397  adv +9.791  fm 1.861  cont 0.251  pit 0.078  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.74 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  3900  d_loss 9.575  adv +9.726  fm 1.816  cont 0.252  pit 0.077  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.74 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.95
+  4000  d_loss 9.141  adv +10.040  fm 1.875  cont 0.255  pit 0.078  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.70 PeriodDisc7:0.75 PeriodDisc11:0.73 WaveDisc1:0.94 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.413, '300-1200': 0.541, '1200-4000': 0.038}
+  saved runs\fme_full\model_adv_v2/adv_step4000.nam
+  4100  d_loss 9.556  adv +9.787  fm 1.822  cont 0.250  pit 0.079  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.74 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.95
+  4200  d_loss 9.325  adv +9.984  fm 1.849  cont 0.247  pit 0.081  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.70 PeriodDisc7:0.74 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  4300  d_loss 9.495  adv +9.749  fm 1.797  cont 0.257  pit 0.081  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.74 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  4400  d_loss 9.485  adv +9.930  fm 1.807  cont 0.251  pit 0.080  | PeriodDisc2:0.70 PeriodDisc3:0.71 PeriodDisc5:0.71 PeriodDisc7:0.75 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.92 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  4500  d_loss 9.489  adv +9.907  fm 1.825  cont 0.262  pit 0.080  | PeriodDisc2:0.69 PeriodDisc3:0.70 PeriodDisc5:0.71 PeriodDisc7:0.75 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.406, '300-1200': 0.546, '1200-4000': 0.044}
+  4600  d_loss 9.580  adv +9.873  fm 1.782  cont 0.252  pit 0.080  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.70 PeriodDisc7:0.75 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.91 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  4700  d_loss 9.343  adv +10.018  fm 1.849  cont 0.255  pit 0.082  | PeriodDisc2:0.69 PeriodDisc3:0.70 PeriodDisc5:0.70 PeriodDisc7:0.74 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  4800  d_loss 9.563  adv +9.701  fm 1.781  cont 0.248  pit 0.083  | PeriodDisc2:0.69 PeriodDisc3:0.70 PeriodDisc5:0.70 PeriodDisc7:0.73 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  4900  d_loss 9.776  adv +9.548  fm 1.740  cont 0.252  pit 0.083  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.73 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  5000  d_loss 9.620  adv +9.583  fm 1.829  cont 0.257  pit 0.084  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.72 PeriodDisc11:0.71 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.397, '300-1200': 0.554, '1200-4000': 0.047}
+  5100  d_loss 9.526  adv +9.871  fm 1.836  cont 0.259  pit 0.084  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.70 PeriodDisc7:0.73 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.92 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  5200  d_loss 9.670  adv +9.785  fm 1.788  cont 0.256  pit 0.083  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.70 PeriodDisc7:0.73 PeriodDisc11:0.68 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  5300  d_loss 9.211  adv +9.944  fm 1.844  cont 0.267  pit 0.086  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.74 PeriodDisc11:0.72 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  5400  d_loss 9.522  adv +9.636  fm 1.813  cont 0.251  pit 0.084  | PeriodDisc2:0.69 PeriodDisc3:0.70 PeriodDisc5:0.69 PeriodDisc7:0.72 PeriodDisc11:0.72 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  5500  d_loss 9.278  adv +9.884  fm 1.828  cont 0.256  pit 0.085  | PeriodDisc2:0.70 PeriodDisc3:0.69 PeriodDisc5:0.70 PeriodDisc7:0.72 PeriodDisc11:0.73 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.392, '300-1200': 0.557, '1200-4000': 0.05}
+  5600  d_loss 9.402  adv +9.782  fm 1.803  cont 0.247  pit 0.087  | PeriodDisc2:0.70 PeriodDisc3:0.70 PeriodDisc5:0.70 PeriodDisc7:0.73 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  5700  d_loss 9.633  adv +9.650  fm 1.760  cont 0.259  pit 0.085  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.72 PeriodDisc11:0.71 WaveDisc1:0.92 WaveDisc2:0.92 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  5800  d_loss 9.518  adv +9.661  fm 1.830  cont 0.270  pit 0.084  | PeriodDisc2:0.69 PeriodDisc3:0.70 PeriodDisc5:0.70 PeriodDisc7:0.71 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  5900  d_loss 9.726  adv +9.483  fm 1.796  cont 0.262  pit 0.085  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.71 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.91 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  6000  d_loss 9.649  adv +9.543  fm 1.768  cont 0.267  pit 0.087  | PeriodDisc2:0.69 PeriodDisc3:0.70 PeriodDisc5:0.69 PeriodDisc7:0.72 PeriodDisc11:0.71 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.391, '300-1200': 0.56, '1200-4000': 0.048}
+  saved runs\fme_full\model_adv_v2/adv_step6000.nam
+  6100  d_loss 9.640  adv +9.544  fm 1.852  cont 0.264  pit 0.084  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.72 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  6200  d_loss 9.476  adv +9.672  fm 1.843  cont 0.261  pit 0.086  | PeriodDisc2:0.70 PeriodDisc3:0.70 PeriodDisc5:0.69 PeriodDisc7:0.72 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  6300  d_loss 9.530  adv +9.694  fm 1.840  cont 0.270  pit 0.087  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.70 PeriodDisc11:0.71 WaveDisc1:0.92 WaveDisc2:0.92 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  6400  d_loss 9.493  adv +9.720  fm 1.804  cont 0.265  pit 0.086  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.70 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.94 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  6500  d_loss 9.754  adv +9.463  fm 1.795  cont 0.265  pit 0.083  | PeriodDisc2:0.68 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.70 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.91 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.388, '300-1200': 0.565, '1200-4000': 0.046}
+  6600  d_loss 9.606  adv +9.534  fm 1.775  cont 0.266  pit 0.083  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.71 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.92 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  6700  d_loss 9.560  adv +9.619  fm 1.785  cont 0.264  pit 0.081  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.71 PeriodDisc11:0.71 WaveDisc1:0.93 WaveDisc2:0.93 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  6800  d_loss 9.756  adv +9.534  fm 1.775  cont 0.264  pit 0.082  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.70 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.92 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  6900  d_loss 9.548  adv +9.685  fm 1.853  cont 0.271  pit 0.081  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.71 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.92 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  7000  d_loss 9.588  adv +9.710  fm 1.830  cont 0.269  pit 0.084  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.70 PeriodDisc11:0.70 WaveDisc1:0.91 WaveDisc2:0.92 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.384, '300-1200': 0.571, '1200-4000': 0.044}
+  7100  d_loss 9.477  adv +9.509  fm 1.874  cont 0.266  pit 0.083  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.70 PeriodDisc11:0.71 WaveDisc1:0.92 WaveDisc2:0.94 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  7200  d_loss 9.653  adv +9.365  fm 1.791  cont 0.269  pit 0.084  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.67 PeriodDisc7:0.70 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.93 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  7300  d_loss 9.673  adv +9.545  fm 1.804  cont 0.278  pit 0.086  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.67 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.93 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  7400  d_loss 9.822  adv +9.274  fm 1.797  cont 0.271  pit 0.085  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.92 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  7500  d_loss 9.586  adv +9.537  fm 1.839  cont 0.275  pit 0.084  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.70 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.93 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.379, '300-1200': 0.58, '1200-4000': 0.041}
+  7600  d_loss 9.638  adv +9.713  fm 1.833  cont 0.283  pit 0.083  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.68 WaveDisc1:0.92 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  7700  d_loss 9.767  adv +9.339  fm 1.823  cont 0.273  pit 0.086  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.67 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.91 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  7800  d_loss 9.520  adv +9.596  fm 1.856  cont 0.276  pit 0.088  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.70 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.93 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.96
+  7900  d_loss 9.286  adv +9.868  fm 1.839  cont 0.282  pit 0.091  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.67 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  8000  d_loss 9.600  adv +9.596  fm 1.824  cont 0.275  pit 0.085  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.94 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.369, '300-1200': 0.59, '1200-4000': 0.04}
+  saved runs\fme_full\model_adv_v2/adv_step8000.nam
+  8100  d_loss 9.492  adv +9.688  fm 1.826  cont 0.280  pit 0.085  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.70 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.94 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  8200  d_loss 9.551  adv +9.653  fm 1.845  cont 0.285  pit 0.082  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  8300  d_loss 9.264  adv +9.902  fm 1.936  cont 0.284  pit 0.084  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.71 WaveDisc1:0.94 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  8400  d_loss 9.533  adv +9.672  fm 1.881  cont 0.277  pit 0.083  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  8500  d_loss 9.210  adv +10.176  fm 1.953  cont 0.280  pit 0.089  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.365, '300-1200': 0.596, '1200-4000': 0.038}
+  8600  d_loss 9.500  adv +9.959  fm 1.865  cont 0.285  pit 0.084  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  8700  d_loss 9.580  adv +9.705  fm 1.882  cont 0.275  pit 0.086  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  8800  d_loss 9.332  adv +10.257  fm 1.901  cont 0.282  pit 0.090  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.97 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  8900  d_loss 9.494  adv +9.782  fm 1.874  cont 0.278  pit 0.089  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  9000  d_loss 9.605  adv +9.746  fm 1.835  cont 0.289  pit 0.089  | PeriodDisc2:0.68 PeriodDisc3:0.67 PeriodDisc5:0.67 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.361, '300-1200': 0.6, '1200-4000': 0.038}
+  9100  d_loss 9.726  adv +9.359  fm 1.808  cont 0.288  pit 0.086  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.68 WaveDisc1:0.92 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  9200  d_loss 9.559  adv +9.601  fm 1.928  cont 0.287  pit 0.088  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.94 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  9300  d_loss 9.442  adv +9.734  fm 1.881  cont 0.299  pit 0.086  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.67 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.94
+  9400  d_loss 9.577  adv +9.484  fm 1.821  cont 0.288  pit 0.087  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.67 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  9500  d_loss 9.358  adv +9.984  fm 1.932  cont 0.284  pit 0.088  | PeriodDisc2:0.69 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.70 PeriodDisc11:0.69 WaveDisc1:0.94 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.351, '300-1200': 0.609, '1200-4000': 0.039}
+  9600  d_loss 9.553  adv +9.808  fm 1.844  cont 0.288  pit 0.085  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  9700  d_loss 9.647  adv +9.525  fm 1.850  cont 0.284  pit 0.083  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.67 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  9800  d_loss 9.551  adv +9.782  fm 1.873  cont 0.287  pit 0.086  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.68 WaveDisc1:0.94 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  9900  d_loss 9.589  adv +9.744  fm 1.851  cont 0.288  pit 0.087  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.94 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 10000  d_loss 9.391  adv +10.091  fm 1.934  cont 0.285  pit 0.090  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.67 PeriodDisc7:0.69 PeriodDisc11:0.68 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.342, '300-1200': 0.618, '1200-4000': 0.039}
+  saved runs\fme_full\model_adv_v2/adv_step10000.nam
+ 10100  d_loss 9.388  adv +10.144  fm 1.927  cont 0.284  pit 0.089  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.68 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 10200  d_loss 9.462  adv +9.823  fm 1.857  cont 0.287  pit 0.088  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 10300  d_loss 9.413  adv +9.793  fm 1.858  cont 0.287  pit 0.088  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.94 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 10400  d_loss 9.523  adv +9.830  fm 1.809  cont 0.286  pit 0.087  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 10500  d_loss 9.651  adv +9.762  fm 1.853  cont 0.289  pit 0.089  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.335, '300-1200': 0.624, '1200-4000': 0.039}
+ 10600  d_loss 9.495  adv +9.727  fm 1.860  cont 0.281  pit 0.088  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 10700  d_loss 9.500  adv +9.841  fm 1.869  cont 0.284  pit 0.087  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 10800  d_loss 9.372  adv +10.229  fm 1.881  cont 0.285  pit 0.089  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.70 PeriodDisc11:0.70 WaveDisc1:0.94 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 10900  d_loss 9.402  adv +9.901  fm 1.874  cont 0.288  pit 0.089  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.94 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 11000  d_loss 9.317  adv +10.150  fm 1.944  cont 0.298  pit 0.091  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.71 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.33, '300-1200': 0.628, '1200-4000': 0.041}
+ 11100  d_loss 9.547  adv +10.019  fm 1.906  cont 0.287  pit 0.089  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 11200  d_loss 9.574  adv +9.927  fm 1.846  cont 0.283  pit 0.089  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.94 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 11300  d_loss 9.504  adv +10.015  fm 1.882  cont 0.296  pit 0.092  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 11400  d_loss 9.592  adv +9.993  fm 1.867  cont 0.292  pit 0.089  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 11500  d_loss 9.658  adv +9.695  fm 1.881  cont 0.294  pit 0.090  | PeriodDisc2:0.68 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.319, '300-1200': 0.637, '1200-4000': 0.043}
+ 11600  d_loss 9.431  adv +10.202  fm 1.877  cont 0.295  pit 0.089  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.94 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 11700  d_loss 9.407  adv +10.267  fm 1.924  cont 0.294  pit 0.092  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 11800  d_loss 9.358  adv +10.260  fm 1.962  cont 0.286  pit 0.093  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 11900  d_loss 9.472  adv +10.343  fm 1.895  cont 0.292  pit 0.092  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 12000  d_loss 9.582  adv +10.181  fm 1.864  cont 0.289  pit 0.094  | PeriodDisc2:0.67 PeriodDisc3:0.66 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.31, '300-1200': 0.643, '1200-4000': 0.045}
+  saved runs\fme_full\model_adv_v2/adv_step12000.nam
+ 12100  d_loss 9.729  adv +10.093  fm 1.771  cont 0.302  pit 0.093  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 12200  d_loss 9.454  adv +10.440  fm 1.911  cont 0.304  pit 0.091  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 12300  d_loss 9.672  adv +9.910  fm 1.858  cont 0.298  pit 0.090  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 12400  d_loss 9.269  adv +10.392  fm 1.909  cont 0.293  pit 0.092  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.71 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 12500  d_loss 9.794  adv +9.799  fm 1.816  cont 0.305  pit 0.094  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.67 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.302, '300-1200': 0.65, '1200-4000': 0.047}
+ 12600  d_loss 9.154  adv +10.780  fm 1.930  cont 0.302  pit 0.091  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.70 PeriodDisc7:0.70 PeriodDisc11:0.71 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 12700  d_loss 9.448  adv +10.201  fm 1.888  cont 0.288  pit 0.091  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 12800  d_loss 9.552  adv +10.074  fm 1.870  cont 0.300  pit 0.092  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 12900  d_loss 9.410  adv +10.024  fm 1.912  cont 0.297  pit 0.093  | PeriodDisc2:0.68 PeriodDisc3:0.68 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 13000  d_loss 9.627  adv +10.077  fm 1.886  cont 0.294  pit 0.091  | PeriodDisc2:0.66 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.298, '300-1200': 0.651, '1200-4000': 0.049}
+ 13100  d_loss 9.605  adv +10.076  fm 1.886  cont 0.308  pit 0.092  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 13200  d_loss 9.307  adv +10.429  fm 1.909  cont 0.299  pit 0.094  | PeriodDisc2:0.68 PeriodDisc3:0.67 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 13300  d_loss 9.653  adv +9.918  fm 1.849  cont 0.294  pit 0.092  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.68 PeriodDisc7:0.67 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+ 13400  d_loss 9.498  adv +10.179  fm 1.880  cont 0.291  pit 0.091  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 13500  d_loss 9.671  adv +10.048  fm 1.910  cont 0.308  pit 0.091  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.29, '300-1200': 0.657, '1200-4000': 0.051}
+ 13600  d_loss 9.608  adv +10.124  fm 1.844  cont 0.308  pit 0.094  | PeriodDisc2:0.67 PeriodDisc3:0.66 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 13700  d_loss 9.251  adv +10.853  fm 1.896  cont 0.306  pit 0.093  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.69 PeriodDisc7:0.70 PeriodDisc11:0.69 WaveDisc1:0.94 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 13800  d_loss 9.582  adv +10.168  fm 1.891  cont 0.305  pit 0.095  | PeriodDisc2:0.66 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 13900  d_loss 9.721  adv +9.874  fm 1.861  cont 0.299  pit 0.098  | PeriodDisc2:0.66 PeriodDisc3:0.67 PeriodDisc5:0.67 PeriodDisc7:0.67 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 14000  d_loss 9.589  adv +10.025  fm 1.904  cont 0.307  pit 0.097  | PeriodDisc2:0.66 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.283, '300-1200': 0.663, '1200-4000': 0.053}
+  saved runs\fme_full\model_adv_v2/adv_step14000.nam
+ 14100  d_loss 9.639  adv +10.328  fm 1.886  cont 0.301  pit 0.097  | PeriodDisc2:0.65 PeriodDisc3:0.66 PeriodDisc5:0.67 PeriodDisc7:0.67 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 14200  d_loss 9.582  adv +10.155  fm 1.891  cont 0.301  pit 0.094  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 14300  d_loss 9.523  adv +10.112  fm 1.939  cont 0.300  pit 0.096  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 14400  d_loss 9.641  adv +10.030  fm 1.849  cont 0.306  pit 0.093  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.96 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 14500  d_loss 9.220  adv +10.632  fm 1.903  cont 0.325  pit 0.100  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.95 WaveDisc2:0.97 WaveDisc4:0.98 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.275, '300-1200': 0.668, '1200-4000': 0.055}
+ 14600  d_loss 9.351  adv +10.497  fm 1.973  cont 0.303  pit 0.096  | PeriodDisc2:0.67 PeriodDisc3:0.68 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 14700  d_loss 9.350  adv +10.500  fm 1.934  cont 0.300  pit 0.098  | PeriodDisc2:0.67 PeriodDisc3:0.69 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.97 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 14800  d_loss 9.562  adv +10.484  fm 1.928  cont 0.312  pit 0.099  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 14900  d_loss 9.605  adv +10.024  fm 1.915  cont 0.304  pit 0.100  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.70 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 15000  d_loss 9.824  adv +9.714  fm 1.874  cont 0.321  pit 0.099  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.67 PeriodDisc7:0.67 PeriodDisc11:0.68 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.95
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.267, '300-1200': 0.674, '1200-4000': 0.057}
+ 15100  d_loss 9.659  adv +10.166  fm 1.887  cont 0.312  pit 0.098  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.67 PeriodDisc7:0.67 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 15200  d_loss 9.341  adv +10.733  fm 1.942  cont 0.319  pit 0.100  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.94 WaveDisc2:0.97 WaveDisc4:0.97 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 15300  d_loss 9.561  adv +10.253  fm 1.881  cont 0.312  pit 0.103  | PeriodDisc2:0.67 PeriodDisc3:0.66 PeriodDisc5:0.68 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 15400  d_loss 9.762  adv +10.199  fm 1.895  cont 0.332  pit 0.102  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.68 PeriodDisc7:0.67 PeriodDisc11:0.68 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 15500  d_loss 9.795  adv +10.080  fm 1.844  cont 0.328  pit 0.099  | PeriodDisc2:0.66 PeriodDisc3:0.65 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.252, '300-1200': 0.686, '1200-4000': 0.06}
+ 15600  d_loss 9.509  adv +10.495  fm 1.893  cont 0.317  pit 0.099  | PeriodDisc2:0.67 PeriodDisc3:0.67 PeriodDisc5:0.69 PeriodDisc7:0.69 PeriodDisc11:0.69 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 15700  d_loss 9.808  adv +10.241  fm 1.900  cont 0.317  pit 0.102  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 15800  d_loss 9.737  adv +10.191  fm 1.851  cont 0.328  pit 0.099  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.69 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 15900  d_loss 9.728  adv +10.242  fm 1.882  cont 0.321  pit 0.101  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.68 WaveDisc1:0.91 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:0.99 SpecDisc8192:0.97
+ 16000  d_loss 9.823  adv +9.949  fm 1.849  cont 0.321  pit 0.103  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.67 PeriodDisc7:0.68 PeriodDisc11:0.68 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.245, '300-1200': 0.691, '1200-4000': 0.062}
+  saved runs\fme_full\model_adv_v2/adv_step16000.nam
+ 16100  d_loss 9.870  adv +9.934  fm 1.802  cont 0.325  pit 0.107  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.68 PeriodDisc7:0.68 PeriodDisc11:0.68 WaveDisc1:0.90 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 16200  d_loss 9.897  adv +10.174  fm 1.870  cont 0.329  pit 0.109  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.67 PeriodDisc7:0.68 PeriodDisc11:0.69 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 16300  d_loss 10.055  adv +9.899  fm 1.839  cont 0.325  pit 0.107  | PeriodDisc2:0.65 PeriodDisc3:0.66 PeriodDisc5:0.67 PeriodDisc7:0.66 PeriodDisc11:0.67 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 16400  d_loss 9.923  adv +10.003  fm 1.821  cont 0.318  pit 0.111  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.67 PeriodDisc7:0.68 PeriodDisc11:0.68 WaveDisc1:0.90 WaveDisc2:0.95 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 16500  d_loss 10.049  adv +9.954  fm 1.812  cont 0.339  pit 0.111  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.66 PeriodDisc7:0.67 PeriodDisc11:0.67 WaveDisc1:0.90 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.235, '300-1200': 0.701, '1200-4000': 0.063}
+ 16600  d_loss 10.016  adv +10.067  fm 1.790  cont 0.327  pit 0.111  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.66 PeriodDisc7:0.67 PeriodDisc11:0.67 WaveDisc1:0.91 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 16700  d_loss 10.173  adv +9.770  fm 1.853  cont 0.328  pit 0.110  | PeriodDisc2:0.66 PeriodDisc3:0.64 PeriodDisc5:0.66 PeriodDisc7:0.66 PeriodDisc11:0.68 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 16800  d_loss 9.965  adv +10.145  fm 1.864  cont 0.316  pit 0.110  | PeriodDisc2:0.66 PeriodDisc3:0.65 PeriodDisc5:0.66 PeriodDisc7:0.67 PeriodDisc11:0.68 WaveDisc1:0.91 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 16900  d_loss 10.302  adv +9.724  fm 1.780  cont 0.331  pit 0.113  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.65 PeriodDisc7:0.65 PeriodDisc11:0.66 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 17000  d_loss 10.290  adv +9.593  fm 1.802  cont 0.347  pit 0.113  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.65 PeriodDisc7:0.66 PeriodDisc11:0.66 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.226, '300-1200': 0.707, '1200-4000': 0.065}
+ 17100  d_loss 10.169  adv +9.763  fm 1.831  cont 0.337  pit 0.114  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.65 PeriodDisc7:0.66 PeriodDisc11:0.66 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 17200  d_loss 9.835  adv +10.435  fm 1.860  cont 0.325  pit 0.113  | PeriodDisc2:0.64 PeriodDisc3:0.65 PeriodDisc5:0.64 PeriodDisc7:0.67 PeriodDisc11:0.65 WaveDisc1:0.92 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 17300  d_loss 10.195  adv +9.801  fm 1.773  cont 0.339  pit 0.113  | PeriodDisc2:0.64 PeriodDisc3:0.65 PeriodDisc5:0.66 PeriodDisc7:0.66 PeriodDisc11:0.65 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 17400  d_loss 10.105  adv +9.862  fm 1.830  cont 0.317  pit 0.112  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.66 PeriodDisc7:0.67 PeriodDisc11:0.66 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 17500  d_loss 10.184  adv +10.057  fm 1.830  cont 0.341  pit 0.113  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.64 PeriodDisc7:0.66 PeriodDisc11:0.65 WaveDisc1:0.91 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.221, '300-1200': 0.711, '1200-4000': 0.067}
+ 17600  d_loss 10.147  adv +9.998  fm 1.838  cont 0.336  pit 0.116  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.65 PeriodDisc7:0.66 PeriodDisc11:0.66 WaveDisc1:0.90 WaveDisc2:0.95 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 17700  d_loss 10.217  adv +10.023  fm 1.807  cont 0.345  pit 0.119  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.65 PeriodDisc7:0.66 PeriodDisc11:0.65 WaveDisc1:0.91 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 17800  d_loss 10.159  adv +9.911  fm 1.840  cont 0.332  pit 0.117  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.67 PeriodDisc7:0.66 PeriodDisc11:0.66 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 17900  d_loss 10.223  adv +9.915  fm 1.827  cont 0.323  pit 0.115  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.66 PeriodDisc7:0.66 PeriodDisc11:0.65 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 18000  d_loss 10.192  adv +10.023  fm 1.812  cont 0.341  pit 0.115  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.65 PeriodDisc7:0.65 PeriodDisc11:0.65 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.212, '300-1200': 0.719, '1200-4000': 0.068}
+  saved runs\fme_full\model_adv_v2/adv_step18000.nam
+ 18100  d_loss 10.377  adv +9.929  fm 1.798  cont 0.345  pit 0.119  | PeriodDisc2:0.63 PeriodDisc3:0.62 PeriodDisc5:0.63 PeriodDisc7:0.64 PeriodDisc11:0.64 WaveDisc1:0.90 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 18200  d_loss 10.462  adv +9.629  fm 1.825  cont 0.366  pit 0.115  | PeriodDisc2:0.63 PeriodDisc3:0.62 PeriodDisc5:0.64 PeriodDisc7:0.65 PeriodDisc11:0.65 WaveDisc1:0.89 WaveDisc2:0.94 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 18300  d_loss 10.476  adv +9.577  fm 1.755  cont 0.368  pit 0.116  | PeriodDisc2:0.64 PeriodDisc3:0.63 PeriodDisc5:0.65 PeriodDisc7:0.65 PeriodDisc11:0.65 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 18400  d_loss 10.127  adv +10.017  fm 1.898  cont 0.338  pit 0.116  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.66 PeriodDisc7:0.66 PeriodDisc11:0.66 WaveDisc1:0.90 WaveDisc2:0.95 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 18500  d_loss 9.771  adv +10.557  fm 1.865  cont 0.331  pit 0.118  | PeriodDisc2:0.65 PeriodDisc3:0.64 PeriodDisc5:0.66 PeriodDisc7:0.66 PeriodDisc11:0.66 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.195, '300-1200': 0.736, '1200-4000': 0.067}
+ 18600  d_loss 10.261  adv +9.684  fm 1.792  cont 0.333  pit 0.117  | PeriodDisc2:0.64 PeriodDisc3:0.63 PeriodDisc5:0.64 PeriodDisc7:0.65 PeriodDisc11:0.65 WaveDisc1:0.89 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 18700  d_loss 10.392  adv +9.748  fm 1.793  cont 0.333  pit 0.120  | PeriodDisc2:0.63 PeriodDisc3:0.63 PeriodDisc5:0.63 PeriodDisc7:0.64 PeriodDisc11:0.65 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 18800  d_loss 10.211  adv +10.012  fm 1.816  cont 0.356  pit 0.123  | PeriodDisc2:0.63 PeriodDisc3:0.63 PeriodDisc5:0.64 PeriodDisc7:0.65 PeriodDisc11:0.65 WaveDisc1:0.90 WaveDisc2:0.95 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 18900  d_loss 10.499  adv +9.469  fm 1.824  cont 0.343  pit 0.118  | PeriodDisc2:0.63 PeriodDisc3:0.63 PeriodDisc5:0.65 PeriodDisc7:0.65 PeriodDisc11:0.64 WaveDisc1:0.89 WaveDisc2:0.94 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 19000  d_loss 9.836  adv +10.160  fm 1.886  cont 0.338  pit 0.116  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.66 PeriodDisc7:0.66 PeriodDisc11:0.66 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.193, '300-1200': 0.739, '1200-4000': 0.067}
+ 19100  d_loss 10.167  adv +10.246  fm 1.840  cont 0.334  pit 0.117  | PeriodDisc2:0.64 PeriodDisc3:0.63 PeriodDisc5:0.65 PeriodDisc7:0.65 PeriodDisc11:0.64 WaveDisc1:0.91 WaveDisc2:0.95 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 19200  d_loss 10.278  adv +9.863  fm 1.831  cont 0.341  pit 0.119  | PeriodDisc2:0.63 PeriodDisc3:0.63 PeriodDisc5:0.64 PeriodDisc7:0.65 PeriodDisc11:0.65 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 19300  d_loss 10.594  adv +9.372  fm 1.749  cont 0.355  pit 0.121  | PeriodDisc2:0.63 PeriodDisc3:0.63 PeriodDisc5:0.63 PeriodDisc7:0.65 PeriodDisc11:0.64 WaveDisc1:0.89 WaveDisc2:0.93 WaveDisc4:0.93 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 19400  d_loss 10.255  adv +9.714  fm 1.860  cont 0.347  pit 0.118  | PeriodDisc2:0.63 PeriodDisc3:0.63 PeriodDisc5:0.64 PeriodDisc7:0.65 PeriodDisc11:0.65 WaveDisc1:0.90 WaveDisc2:0.95 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+ 19500  d_loss 10.210  adv +9.849  fm 1.813  cont 0.346  pit 0.120  | PeriodDisc2:0.63 PeriodDisc3:0.64 PeriodDisc5:0.65 PeriodDisc7:0.66 PeriodDisc11:0.66 WaveDisc1:0.91 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.96
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.19, '300-1200': 0.743, '1200-4000': 0.066}
+ 19600  d_loss 10.082  adv +10.221  fm 1.842  cont 0.344  pit 0.118  | PeriodDisc2:0.63 PeriodDisc3:0.63 PeriodDisc5:0.64 PeriodDisc7:0.65 PeriodDisc11:0.65 WaveDisc1:0.93 WaveDisc2:0.96 WaveDisc4:0.96 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 19700  d_loss 10.473  adv +9.642  fm 1.787  cont 0.341  pit 0.117  | PeriodDisc2:0.62 PeriodDisc3:0.62 PeriodDisc5:0.63 PeriodDisc7:0.64 PeriodDisc11:0.65 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 19800  d_loss 10.163  adv +10.103  fm 1.859  cont 0.329  pit 0.122  | PeriodDisc2:0.63 PeriodDisc3:0.63 PeriodDisc5:0.65 PeriodDisc7:0.66 PeriodDisc11:0.65 WaveDisc1:0.91 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 19900  d_loss 10.222  adv +9.932  fm 1.865  cont 0.333  pit 0.119  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.64 PeriodDisc7:0.66 PeriodDisc11:0.65 WaveDisc1:0.91 WaveDisc2:0.95 WaveDisc4:0.95 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+ 20000  d_loss 10.226  adv +9.878  fm 1.815  cont 0.332  pit 0.121  | PeriodDisc2:0.64 PeriodDisc3:0.63 PeriodDisc5:0.66 PeriodDisc7:0.66 PeriodDisc11:0.66 WaveDisc1:0.90 WaveDisc2:0.94 WaveDisc4:0.94 SpecDisc512:1.00 SpecDisc2048:1.00 SpecDisc8192:0.97
+  probe bands in : {'80-300': 0.476, '300-1200': 0.496, '1200-4000': 0.027}
+  probe bands out: {'80-300': 0.184, '300-1200': 0.749, '1200-4000': 0.065}
+  saved runs\fme_full\model_adv_v2/adv_step20000.nam
+done -> runs\fme_full\model_adv_v2/adv_final.nam

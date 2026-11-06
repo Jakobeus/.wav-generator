@@ -35,6 +35,8 @@ def main():
     p.add_argument("--model", required=True, help="adv_stepN.pt / adv_final.pt")
     p.add_argument("--in", dest="inp", required=True)
     p.add_argument("--out", required=True)
+    p.add_argument("--dry-out", default=None,
+                   help="also write the amp-only (dry path, no reverb) render here")
     p.add_argument("--device", default=None)
     p.add_argument("--norm-input", action="store_true",
                    help="normalize input to -18dBFS like training")
@@ -44,13 +46,15 @@ def main():
     G = build(dev)
     sd = torch.load(args.model, map_location=dev, weights_only=True)
     G.load_state_dict(sd["state_dict"])
-    print(f"loaded {args.model} on {dev}")
+    G.band = tuple(sd.get("band", (0.0, 0.0)))
+    print(f"loaded {args.model} on {dev}  (output band {G.band[0]:.0f}-{G.band[1]:.0f} Hz)")
 
     x = load_mono(args.inp)
     if args.norm_input:
         x = x * (TARGET_RMS / x.pow(2).mean().add(1e-12).sqrt())
     W, T = CHUNK, len(x)
     y = torch.zeros(T)
+    yd = torch.zeros(T)
     with torch.no_grad():
         for s in range(0, T, W):
             lo, hi = s - CTX, min(T, s + W)
@@ -58,11 +62,15 @@ def main():
             if lo < 0:                       # left-pad missing context
                 seg = torch.cat([torch.zeros(-lo), seg])
             seg = seg.to(dev)
-            out, _ = G(seg.unsqueeze(0))
-            fresh = out[0, -min(W, T - s):].cpu()
-            y[s:s + len(fresh)] = fresh
+            out, dry = G(seg.unsqueeze(0))
+            n = min(W, T - s)
+            y[s:s + n] = out[0, -n:].cpu()
+            yd[s:s + n] = dry[0, -n:].cpu()
     sf.write(args.out, y.numpy(), 48000)
     print(f"wrote {args.out} ({T/48000:.1f}s)")
+    if args.dry_out:
+        sf.write(args.dry_out, yd.numpy(), 48000)
+        print(f"wrote {args.dry_out} (dry path only)")
 
 
 if __name__ == "__main__":

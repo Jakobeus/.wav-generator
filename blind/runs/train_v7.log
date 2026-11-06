@@ -1,0 +1,102 @@
+critics (14): ['PeriodDisc2', 'PeriodDisc3', 'PeriodDisc5', 'PeriodDisc7', 'PeriodDisc11', 'WaveDisc1', 'WaveDisc2', 'WaveDisc4', 'SpecDisc512', 'SpecDisc2048', 'SpecDisc8192', 'MelSpecDisc', 'WaveDisc4', 'SpecDisc4096']
+device cuda | DI: ['60.0s', '20.0s', '84.5s']  ref: 171.0s
+critic low-pass: 12000 Hz
+critic high-pass: 40 Hz
+G output band-limited to 40-12000 Hz (same band the critics hear)
+ref energy above cutoff: 0.2845% (hf penalty OFF; critics judge it directly)
+   100  d_loss 16.765  adv +8.409  fm 6.551  cont 5.337  pit 0.049  hf 0.000  dc 0.171  | PeriodDisc2:0.52 PeriodDisc3:0.53 PeriodDisc5:0.57 PeriodDisc7:0.50 PeriodDisc11:0.50 WaveDisc1:0.79 WaveDisc2:0.76 WaveDisc4:0.72 SpecDisc512:0.84 SpecDisc2048:0.89 SpecDisc8192:0.90 MelSpecDisc:0.96 WaveDisc4:0.78 SpecDisc4096:0.91
+   200  d_loss 15.509  adv +10.116  fm 4.871  cont 1.638  pit 0.049  hf 0.000  dc 0.431  | PeriodDisc2:0.61 PeriodDisc3:0.64 PeriodDisc5:0.59 PeriodDisc7:0.60 PeriodDisc11:0.59 WaveDisc1:0.80 WaveDisc2:0.75 WaveDisc4:0.74 SpecDisc512:0.97 SpecDisc2048:0.93 SpecDisc8192:0.88 MelSpecDisc:0.99 WaveDisc4:0.76 SpecDisc4096:0.95
+   300  d_loss 13.994  adv +10.094  fm 3.607  cont 0.450  pit 0.054  hf 0.000  dc 0.608  | PeriodDisc2:0.58 PeriodDisc3:0.56 PeriodDisc5:0.60 PeriodDisc7:0.69 PeriodDisc11:0.61 WaveDisc1:0.85 WaveDisc2:0.82 WaveDisc4:0.80 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.85 MelSpecDisc:0.99 WaveDisc4:0.81 SpecDisc4096:0.97
+   400  d_loss 13.390  adv +10.672  fm 3.389  cont 0.288  pit 0.054  hf 0.000  dc 0.743  | PeriodDisc2:0.63 PeriodDisc3:0.62 PeriodDisc5:0.63 PeriodDisc7:0.64 PeriodDisc11:0.60 WaveDisc1:0.79 WaveDisc2:0.77 WaveDisc4:0.79 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.87 MelSpecDisc:1.00 WaveDisc4:0.79 SpecDisc4096:0.97
+  G grad-norm per term: adv:138 fm:113 cont:37.5 pit:0.339 dc:0
+   500  d_loss 12.748  adv +11.241  fm 3.347  cont 0.246  pit 0.044  hf 0.000  dc 0.786  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.65 PeriodDisc7:0.65 PeriodDisc11:0.63 WaveDisc1:0.80 WaveDisc2:0.79 WaveDisc4:0.82 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.92 MelSpecDisc:1.00 WaveDisc4:0.84 SpecDisc4096:0.97
+  probe bands in : {'80-300': 0.057, '300-1200': 0.493, '1200-4000': 0.408}
+  probe bands out: {'80-300': 0.28, '300-1200': 0.452, '1200-4000': 0.196}
+  fx: reverb wet +0.30 predelay 20ms RT60[s]/band 0.99 1.00 1.00 1.00 1.00 1.00 1.00 1.00 | level[dB]/band -0 +0 +0 +0 +0 -0 -0 -0 | ER[ms] 8 12 17 24 33 43 52 60
+      delay 350ms fb 0.30 damp 4020Hz mix +0.21
+   600  d_loss 12.120  adv +11.866  fm 3.217  cont 0.249  pit 0.040  hf 0.000  dc 0.800  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.63 PeriodDisc7:0.67 PeriodDisc11:0.68 WaveDisc1:0.83 WaveDisc2:0.82 WaveDisc4:0.85 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.94 MelSpecDisc:1.00 WaveDisc4:0.87 SpecDisc4096:0.97
+   700  d_loss 11.807  adv +12.206  fm 3.415  cont 0.243  pit 0.038  hf 0.000  dc 0.761  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.64 PeriodDisc7:0.70 PeriodDisc11:0.70 WaveDisc1:0.87 WaveDisc2:0.84 WaveDisc4:0.86 SpecDisc512:0.99 SpecDisc2048:0.97 SpecDisc8192:0.94 MelSpecDisc:1.00 WaveDisc4:0.90 SpecDisc4096:0.97
+   800  d_loss 11.413  adv +12.434  fm 3.341  cont 0.228  pit 0.036  hf 0.000  dc 0.719  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.65 PeriodDisc7:0.70 PeriodDisc11:0.70 WaveDisc1:0.88 WaveDisc2:0.85 WaveDisc4:0.85 SpecDisc512:0.99 SpecDisc2048:0.97 SpecDisc8192:0.94 MelSpecDisc:1.00 WaveDisc4:0.92 SpecDisc4096:0.98
+   900  d_loss 11.309  adv +12.330  fm 3.218  cont 0.223  pit 0.036  hf 0.000  dc 0.715  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.65 PeriodDisc7:0.70 PeriodDisc11:0.71 WaveDisc1:0.88 WaveDisc2:0.86 WaveDisc4:0.88 SpecDisc512:1.00 SpecDisc2048:0.97 SpecDisc8192:0.94 MelSpecDisc:1.00 WaveDisc4:0.91 SpecDisc4096:0.98
+  G grad-norm per term: adv:1.5e+03 fm:63.7 cont:63.8 pit:0.412 dc:0
+  1000  d_loss 10.927  adv +12.968  fm 3.241  cont 0.228  pit 0.039  hf 0.000  dc 0.578  | PeriodDisc2:0.66 PeriodDisc3:0.67 PeriodDisc5:0.66 PeriodDisc7:0.72 PeriodDisc11:0.73 WaveDisc1:0.89 WaveDisc2:0.87 WaveDisc4:0.87 SpecDisc512:1.00 SpecDisc2048:0.97 SpecDisc8192:0.94 MelSpecDisc:1.00 WaveDisc4:0.92 SpecDisc4096:0.98
+  probe bands in : {'80-300': 0.057, '300-1200': 0.493, '1200-4000': 0.408}
+  probe bands out: {'80-300': 0.204, '300-1200': 0.548, '1200-4000': 0.207}
+  fx: reverb wet +0.29 predelay 20ms RT60[s]/band 0.98 0.99 1.01 1.02 1.01 1.01 1.02 1.02 | level[dB]/band -0 -0 -0 +0 +0 +0 +0 +0 | ER[ms] 8 12 17 24 33 43 52 60
+      delay 350ms fb 0.30 damp 4049Hz mix +0.21
+  1100  d_loss 10.873  adv +12.981  fm 3.218  cont 0.232  pit 0.040  hf 0.000  dc 0.571  | PeriodDisc2:0.67 PeriodDisc3:0.66 PeriodDisc5:0.65 PeriodDisc7:0.70 PeriodDisc11:0.73 WaveDisc1:0.90 WaveDisc2:0.88 WaveDisc4:0.87 SpecDisc512:0.99 SpecDisc2048:0.97 SpecDisc8192:0.94 MelSpecDisc:1.00 WaveDisc4:0.92 SpecDisc4096:0.99
+  1200  d_loss 10.679  adv +13.295  fm 3.498  cont 0.229  pit 0.042  hf 0.000  dc 0.576  | PeriodDisc2:0.66 PeriodDisc3:0.67 PeriodDisc5:0.67 PeriodDisc7:0.72 PeriodDisc11:0.72 WaveDisc1:0.89 WaveDisc2:0.88 WaveDisc4:0.87 SpecDisc512:1.00 SpecDisc2048:0.97 SpecDisc8192:0.94 MelSpecDisc:1.00 WaveDisc4:0.93 SpecDisc4096:0.98
+  1300  d_loss 10.562  adv +13.545  fm 3.289  cont 0.244  pit 0.044  hf 0.000  dc 0.522  | PeriodDisc2:0.66 PeriodDisc3:0.67 PeriodDisc5:0.65 PeriodDisc7:0.72 PeriodDisc11:0.74 WaveDisc1:0.91 WaveDisc2:0.89 WaveDisc4:0.89 SpecDisc512:0.99 SpecDisc2048:0.97 SpecDisc8192:0.93 MelSpecDisc:1.00 WaveDisc4:0.94 SpecDisc4096:0.98
+  1400  d_loss 10.870  adv +13.570  fm 3.272  cont 0.244  pit 0.045  hf 0.000  dc 0.574  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.65 PeriodDisc7:0.71 PeriodDisc11:0.72 WaveDisc1:0.90 WaveDisc2:0.88 WaveDisc4:0.88 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.93 MelSpecDisc:1.00 WaveDisc4:0.94 SpecDisc4096:0.99
+  G grad-norm per term: adv:830 fm:134 cont:60.4 pit:1.11 dc:0
+  1500  d_loss 10.823  adv +13.759  fm 3.247  cont 0.236  pit 0.047  hf 0.000  dc 0.583  | PeriodDisc2:0.66 PeriodDisc3:0.67 PeriodDisc5:0.66 PeriodDisc7:0.72 PeriodDisc11:0.70 WaveDisc1:0.91 WaveDisc2:0.89 WaveDisc4:0.88 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.93 MelSpecDisc:1.00 WaveDisc4:0.93 SpecDisc4096:0.98
+  probe bands in : {'80-300': 0.057, '300-1200': 0.493, '1200-4000': 0.408}
+  probe bands out: {'80-300': 0.15, '300-1200': 0.593, '1200-4000': 0.238}
+  fx: reverb wet +0.26 predelay 20ms RT60[s]/band 0.97 0.97 1.01 1.03 1.02 1.03 1.04 1.04 | level[dB]/band -0 -0 -0 +0 +0 +0 +0 +0 | ER[ms] 8 12 17 24 33 42 52 60
+      delay 350ms fb 0.30 damp 4076Hz mix +0.22
+  1600  d_loss 10.913  adv +13.604  fm 3.145  cont 0.246  pit 0.049  hf 0.000  dc 0.528  | PeriodDisc2:0.66 PeriodDisc3:0.66 PeriodDisc5:0.66 PeriodDisc7:0.74 PeriodDisc11:0.73 WaveDisc1:0.90 WaveDisc2:0.87 WaveDisc4:0.88 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.92 MelSpecDisc:1.00 WaveDisc4:0.93 SpecDisc4096:0.98
+  1700  d_loss 11.281  adv +13.311  fm 3.235  cont 0.278  pit 0.056  hf 0.000  dc 0.440  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.65 PeriodDisc7:0.72 PeriodDisc11:0.70 WaveDisc1:0.89 WaveDisc2:0.87 WaveDisc4:0.88 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.93 MelSpecDisc:1.00 WaveDisc4:0.93 SpecDisc4096:0.98
+  1800  d_loss 11.303  adv +12.919  fm 3.103  cont 0.287  pit 0.057  hf 0.000  dc 0.482  | PeriodDisc2:0.66 PeriodDisc3:0.65 PeriodDisc5:0.65 PeriodDisc7:0.72 PeriodDisc11:0.71 WaveDisc1:0.89 WaveDisc2:0.87 WaveDisc4:0.87 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.93 MelSpecDisc:1.00 WaveDisc4:0.93 SpecDisc4096:0.98
+  1900  d_loss 11.498  adv +13.354  fm 3.110  cont 0.281  pit 0.059  hf 0.000  dc 0.542  | PeriodDisc2:0.66 PeriodDisc3:0.65 PeriodDisc5:0.64 PeriodDisc7:0.72 PeriodDisc11:0.70 WaveDisc1:0.88 WaveDisc2:0.87 WaveDisc4:0.86 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.93 MelSpecDisc:1.00 WaveDisc4:0.92 SpecDisc4096:0.98
+  G grad-norm per term: adv:5.41e+03 fm:1.73e+03 cont:31.2 pit:0.33 dc:0
+  2000  d_loss 11.548  adv +13.268  fm 3.120  cont 0.271  pit 0.059  hf 0.000  dc 0.605  | PeriodDisc2:0.65 PeriodDisc3:0.66 PeriodDisc5:0.65 PeriodDisc7:0.72 PeriodDisc11:0.70 WaveDisc1:0.88 WaveDisc2:0.86 WaveDisc4:0.86 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.92 MelSpecDisc:1.00 WaveDisc4:0.92 SpecDisc4096:0.98
+  probe bands in : {'80-300': 0.057, '300-1200': 0.493, '1200-4000': 0.408}
+  probe bands out: {'80-300': 0.11, '300-1200': 0.621, '1200-4000': 0.26}
+  fx: reverb wet +0.24 predelay 20ms RT60[s]/band 0.96 0.94 1.01 1.05 1.03 1.05 1.07 1.07 | level[dB]/band -0 -0 -0 +0 +0 +0 +0 +0 | ER[ms] 8 12 17 24 33 42 52 60
+      delay 350ms fb 0.30 damp 4094Hz mix +0.22
+  saved runs\fme_full\model_adv_v7/adv_step2000.pt + adv_step2000.nam (dry path)
+  2100  d_loss 12.143  adv +12.569  fm 3.057  cont 0.286  pit 0.064  hf 0.000  dc 0.568  | PeriodDisc2:0.65 PeriodDisc3:0.64 PeriodDisc5:0.64 PeriodDisc7:0.72 PeriodDisc11:0.70 WaveDisc1:0.86 WaveDisc2:0.84 WaveDisc4:0.85 SpecDisc512:0.98 SpecDisc2048:0.94 SpecDisc8192:0.91 MelSpecDisc:1.00 WaveDisc4:0.91 SpecDisc4096:0.97
+  2200  d_loss 11.951  adv +12.753  fm 2.986  cont 0.289  pit 0.067  hf 0.000  dc 0.718  | PeriodDisc2:0.66 PeriodDisc3:0.64 PeriodDisc5:0.65 PeriodDisc7:0.72 PeriodDisc11:0.70 WaveDisc1:0.87 WaveDisc2:0.85 WaveDisc4:0.86 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.92 MelSpecDisc:1.00 WaveDisc4:0.92 SpecDisc4096:0.98
+  2300  d_loss 12.121  adv +12.817  fm 3.010  cont 0.305  pit 0.069  hf 0.000  dc 0.701  | PeriodDisc2:0.67 PeriodDisc3:0.64 PeriodDisc5:0.63 PeriodDisc7:0.68 PeriodDisc11:0.67 WaveDisc1:0.87 WaveDisc2:0.85 WaveDisc4:0.87 SpecDisc512:0.99 SpecDisc2048:0.94 SpecDisc8192:0.92 MelSpecDisc:1.00 WaveDisc4:0.91 SpecDisc4096:0.98
+  2400  d_loss 12.278  adv +12.657  fm 3.093  cont 0.306  pit 0.070  hf 0.000  dc 0.714  | PeriodDisc2:0.65 PeriodDisc3:0.64 PeriodDisc5:0.63 PeriodDisc7:0.70 PeriodDisc11:0.69 WaveDisc1:0.85 WaveDisc2:0.83 WaveDisc4:0.85 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.91 MelSpecDisc:1.00 WaveDisc4:0.91 SpecDisc4096:0.98
+  G grad-norm per term: adv:4.79e+03 fm:613 cont:48.7 pit:0.488 dc:0
+  2500  d_loss 12.398  adv +12.595  fm 2.967  cont 0.311  pit 0.074  hf 0.000  dc 0.687  | PeriodDisc2:0.66 PeriodDisc3:0.64 PeriodDisc5:0.63 PeriodDisc7:0.67 PeriodDisc11:0.69 WaveDisc1:0.85 WaveDisc2:0.83 WaveDisc4:0.85 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.92 MelSpecDisc:1.00 WaveDisc4:0.91 SpecDisc4096:0.98
+  probe bands in : {'80-300': 0.057, '300-1200': 0.493, '1200-4000': 0.408}
+  probe bands out: {'80-300': 0.087, '300-1200': 0.625, '1200-4000': 0.279}
+  fx: reverb wet +0.21 predelay 20ms RT60[s]/band 0.95 0.92 1.01 1.06 1.04 1.07 1.09 1.10 | level[dB]/band -0 -0 -0 +0 +0 +0 +0 +0 | ER[ms] 8 12 17 24 33 42 52 60
+      delay 350ms fb 0.30 damp 4096Hz mix +0.21
+  2600  d_loss 12.713  adv +12.131  fm 2.959  cont 0.325  pit 0.076  hf 0.000  dc 0.840  | PeriodDisc2:0.65 PeriodDisc3:0.64 PeriodDisc5:0.63 PeriodDisc7:0.66 PeriodDisc11:0.67 WaveDisc1:0.84 WaveDisc2:0.82 WaveDisc4:0.83 SpecDisc512:0.99 SpecDisc2048:0.94 SpecDisc8192:0.92 MelSpecDisc:1.00 WaveDisc4:0.89 SpecDisc4096:0.98
+  2700  d_loss 12.757  adv +12.233  fm 2.920  cont 0.319  pit 0.076  hf 0.000  dc 0.944  | PeriodDisc2:0.65 PeriodDisc3:0.63 PeriodDisc5:0.63 PeriodDisc7:0.66 PeriodDisc11:0.67 WaveDisc1:0.84 WaveDisc2:0.82 WaveDisc4:0.83 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.91 MelSpecDisc:1.00 WaveDisc4:0.90 SpecDisc4096:0.97
+  2800  d_loss 12.695  adv +12.329  fm 2.884  cont 0.319  pit 0.084  hf 0.000  dc 0.949  | PeriodDisc2:0.65 PeriodDisc3:0.64 PeriodDisc5:0.64 PeriodDisc7:0.66 PeriodDisc11:0.67 WaveDisc1:0.84 WaveDisc2:0.82 WaveDisc4:0.82 SpecDisc512:1.00 SpecDisc2048:0.94 SpecDisc8192:0.90 MelSpecDisc:1.00 WaveDisc4:0.90 SpecDisc4096:0.98
+  2900  d_loss 12.976  adv +12.162  fm 2.876  cont 0.339  pit 0.082  hf 0.000  dc 0.961  | PeriodDisc2:0.64 PeriodDisc3:0.63 PeriodDisc5:0.65 PeriodDisc7:0.63 PeriodDisc11:0.66 WaveDisc1:0.83 WaveDisc2:0.82 WaveDisc4:0.83 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.91 MelSpecDisc:1.00 WaveDisc4:0.89 SpecDisc4096:0.98
+  G grad-norm per term: adv:1.26e+04 fm:568 cont:31.6 pit:0.509 dc:0
+  3000  d_loss 13.085  adv +12.233  fm 2.910  cont 0.330  pit 0.085  hf 0.000  dc 1.216  | PeriodDisc2:0.63 PeriodDisc3:0.62 PeriodDisc5:0.62 PeriodDisc7:0.62 PeriodDisc11:0.66 WaveDisc1:0.83 WaveDisc2:0.82 WaveDisc4:0.81 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.91 MelSpecDisc:1.00 WaveDisc4:0.89 SpecDisc4096:0.98
+  probe bands in : {'80-300': 0.057, '300-1200': 0.493, '1200-4000': 0.408}
+  probe bands out: {'80-300': 0.071, '300-1200': 0.625, '1200-4000': 0.289}
+  fx: reverb wet +0.18 predelay 20ms RT60[s]/band 0.94 0.90 1.01 1.07 1.05 1.09 1.11 1.14 | level[dB]/band -0 -0 -0 +0 +0 +0 +0 +0 | ER[ms] 8 12 17 24 33 42 52 60
+      delay 350ms fb 0.30 damp 4087Hz mix +0.20
+  3100  d_loss 12.872  adv +12.274  fm 2.823  cont 0.328  pit 0.084  hf 0.000  dc 1.339  | PeriodDisc2:0.65 PeriodDisc3:0.66 PeriodDisc5:0.65 PeriodDisc7:0.63 PeriodDisc11:0.66 WaveDisc1:0.84 WaveDisc2:0.82 WaveDisc4:0.82 SpecDisc512:1.00 SpecDisc2048:0.96 SpecDisc8192:0.90 MelSpecDisc:1.00 WaveDisc4:0.89 SpecDisc4096:0.98
+  3200  d_loss 12.998  adv +12.213  fm 2.900  cont 0.326  pit 0.084  hf 0.000  dc 1.535  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.65 PeriodDisc7:0.64 PeriodDisc11:0.66 WaveDisc1:0.84 WaveDisc2:0.82 WaveDisc4:0.82 SpecDisc512:1.00 SpecDisc2048:0.95 SpecDisc8192:0.89 MelSpecDisc:1.00 WaveDisc4:0.89 SpecDisc4096:0.98
+  3300  d_loss 13.036  adv +12.303  fm 2.926  cont 0.338  pit 0.082  hf 0.000  dc 1.487  | PeriodDisc2:0.65 PeriodDisc3:0.66 PeriodDisc5:0.63 PeriodDisc7:0.64 PeriodDisc11:0.67 WaveDisc1:0.83 WaveDisc2:0.82 WaveDisc4:0.81 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.88 MelSpecDisc:1.00 WaveDisc4:0.89 SpecDisc4096:0.98
+  3400  d_loss 13.137  adv +12.199  fm 2.822  cont 0.339  pit 0.084  hf 0.000  dc 1.367  | PeriodDisc2:0.65 PeriodDisc3:0.66 PeriodDisc5:0.63 PeriodDisc7:0.63 PeriodDisc11:0.65 WaveDisc1:0.84 WaveDisc2:0.81 WaveDisc4:0.81 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.89 MelSpecDisc:1.00 WaveDisc4:0.89 SpecDisc4096:0.99
+  G grad-norm per term: adv:1.24e+03 fm:532 cont:36.6 pit:0.45 dc:0
+  3500  d_loss 13.500  adv +11.975  fm 2.838  cont 0.339  pit 0.081  hf 0.000  dc 1.390  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.64 PeriodDisc7:0.61 PeriodDisc11:0.64 WaveDisc1:0.83 WaveDisc2:0.80 WaveDisc4:0.80 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.88 MelSpecDisc:1.00 WaveDisc4:0.87 SpecDisc4096:0.98
+  probe bands in : {'80-300': 0.057, '300-1200': 0.493, '1200-4000': 0.408}
+  probe bands out: {'80-300': 0.059, '300-1200': 0.615, '1200-4000': 0.299}
+  fx: reverb wet +0.16 predelay 20ms RT60[s]/band 0.92 0.88 1.01 1.09 1.05 1.10 1.13 1.16 | level[dB]/band -0 -0 -0 +0 +0 +0 +0 +0 | ER[ms] 8 12 17 24 33 42 52 60
+      delay 350ms fb 0.30 damp 4069Hz mix +0.19
+  3600  d_loss 13.532  adv +11.838  fm 2.940  cont 0.349  pit 0.086  hf 0.000  dc 1.664  | PeriodDisc2:0.64 PeriodDisc3:0.65 PeriodDisc5:0.64 PeriodDisc7:0.62 PeriodDisc11:0.63 WaveDisc1:0.83 WaveDisc2:0.80 WaveDisc4:0.79 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.88 MelSpecDisc:1.00 WaveDisc4:0.87 SpecDisc4096:0.98
+  3700  d_loss 13.876  adv +11.681  fm 2.909  cont 0.354  pit 0.083  hf 0.000  dc 1.978  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.63 PeriodDisc7:0.61 PeriodDisc11:0.63 WaveDisc1:0.83 WaveDisc2:0.79 WaveDisc4:0.79 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.86 MelSpecDisc:1.00 WaveDisc4:0.86 SpecDisc4096:0.98
+  3800  d_loss 13.729  adv +11.474  fm 2.885  cont 0.361  pit 0.083  hf 0.000  dc 2.460  | PeriodDisc2:0.66 PeriodDisc3:0.65 PeriodDisc5:0.63 PeriodDisc7:0.63 PeriodDisc11:0.66 WaveDisc1:0.83 WaveDisc2:0.80 WaveDisc4:0.80 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.87 MelSpecDisc:1.00 WaveDisc4:0.85 SpecDisc4096:0.98
+  3900  d_loss 13.794  adv +11.287  fm 2.999  cont 0.366  pit 0.084  hf 0.000  dc 2.444  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.63 PeriodDisc7:0.61 PeriodDisc11:0.63 WaveDisc1:0.84 WaveDisc2:0.79 WaveDisc4:0.79 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.88 MelSpecDisc:1.00 WaveDisc4:0.85 SpecDisc4096:0.98
+  G grad-norm per term: adv:693 fm:124 cont:35 pit:0.464 dc:0
+  4000  d_loss 13.841  adv +11.336  fm 2.868  cont 0.371  pit 0.087  hf 0.000  dc 2.713  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.63 PeriodDisc7:0.63 PeriodDisc11:0.63 WaveDisc1:0.84 WaveDisc2:0.81 WaveDisc4:0.79 SpecDisc512:1.00 SpecDisc2048:0.96 SpecDisc8192:0.87 MelSpecDisc:1.00 WaveDisc4:0.84 SpecDisc4096:0.98
+  probe bands in : {'80-300': 0.057, '300-1200': 0.493, '1200-4000': 0.408}
+  probe bands out: {'80-300': 0.048, '300-1200': 0.612, '1200-4000': 0.301}
+  fx: reverb wet +0.14 predelay 20ms RT60[s]/band 0.91 0.86 1.01 1.09 1.06 1.11 1.13 1.18 | level[dB]/band -0 -0 -0 +0 +0 +0 +0 +0 | ER[ms] 8 12 17 24 33 42 52 60
+      delay 350ms fb 0.30 damp 4047Hz mix +0.18
+  saved runs\fme_full\model_adv_v7/adv_step4000.pt + adv_step4000.nam (dry path)
+  4100  d_loss 13.871  adv +11.207  fm 2.804  cont 0.387  pit 0.088  hf 0.000  dc 2.734  | PeriodDisc2:0.65 PeriodDisc3:0.67 PeriodDisc5:0.64 PeriodDisc7:0.62 PeriodDisc11:0.62 WaveDisc1:0.85 WaveDisc2:0.81 WaveDisc4:0.79 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.85 MelSpecDisc:1.00 WaveDisc4:0.84 SpecDisc4096:0.97
+  4200  d_loss 13.989  adv +11.104  fm 2.817  cont 0.393  pit 0.090  hf 0.000  dc 2.922  | PeriodDisc2:0.66 PeriodDisc3:0.65 PeriodDisc5:0.65 PeriodDisc7:0.63 PeriodDisc11:0.61 WaveDisc1:0.83 WaveDisc2:0.82 WaveDisc4:0.78 SpecDisc512:0.99 SpecDisc2048:0.95 SpecDisc8192:0.85 MelSpecDisc:1.00 WaveDisc4:0.85 SpecDisc4096:0.97
+  4300  d_loss 13.624  adv +11.003  fm 2.816  cont 0.394  pit 0.089  hf 0.000  dc 2.784  | PeriodDisc2:0.66 PeriodDisc3:0.65 PeriodDisc5:0.64 PeriodDisc7:0.64 PeriodDisc11:0.65 WaveDisc1:0.86 WaveDisc2:0.82 WaveDisc4:0.79 SpecDisc512:0.99 SpecDisc2048:0.96 SpecDisc8192:0.85 MelSpecDisc:1.00 WaveDisc4:0.86 SpecDisc4096:0.98
+  4400  d_loss 13.444  adv +11.088  fm 2.848  cont 0.389  pit 0.089  hf 0.000  dc 2.811  | PeriodDisc2:0.64 PeriodDisc3:0.64 PeriodDisc5:0.63 PeriodDisc7:0.64 PeriodDisc11:0.65 WaveDisc1:0.85 WaveDisc2:0.85 WaveDisc4:0.81 SpecDisc512:0.99 SpecDisc2048:0.97 SpecDisc8192:0.86 MelSpecDisc:1.00 WaveDisc4:0.88 SpecDisc4096:0.98
+  G grad-norm per term: adv:1.31e+03 fm:18.7 cont:19.5 pit:0.442 dc:0
+  4500  d_loss 13.312  adv +11.472  fm 2.868  cont 0.383  pit 0.091  hf 0.000  dc 3.249  | PeriodDisc2:0.64 PeriodDisc3:0.65 PeriodDisc5:0.64 PeriodDisc7:0.63 PeriodDisc11:0.65 WaveDisc1:0.86 WaveDisc2:0.84 WaveDisc4:0.82 SpecDisc512:0.99 SpecDisc2048:0.97 SpecDisc8192:0.86 MelSpecDisc:1.00 WaveDisc4:0.90 SpecDisc4096:0.97
+  probe bands in : {'80-300': 0.057, '300-1200': 0.493, '1200-4000': 0.408}
+  probe bands out: {'80-300': 0.038, '300-1200': 0.625, '1200-4000': 0.29}
+  fx: reverb wet +0.13 predelay 20ms RT60[s]/band 0.89 0.85 1.01 1.10 1.06 1.11 1.13 1.20 | level[dB]/band -0 -0 -0 +0 +0 +0 +0 +0 | ER[ms] 8 12 17 24 33 42 52 60
+      delay 350ms fb 0.30 damp 4022Hz mix +0.17
+  4600  d_loss 13.619  adv +11.237  fm 2.820  cont 0.387  pit 0.091  hf 0.000  dc 3.249  | PeriodDisc2:0.64 PeriodDisc3:0.65 PeriodDisc5:0.64 PeriodDisc7:0.61 PeriodDisc11:0.63 WaveDisc1:0.85 WaveDisc2:0.85 WaveDisc4:0.81 SpecDisc512:0.99 SpecDisc2048:0.97 SpecDisc8192:0.85 MelSpecDisc:1.00 WaveDisc4:0.89 SpecDisc4096:0.98
+  4700  d_loss 13.232  adv +11.456  fm 2.864  cont 0.391  pit 0.091  hf 0.000  dc 2.954  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.64 PeriodDisc7:0.63 PeriodDisc11:0.64 WaveDisc1:0.84 WaveDisc2:0.87 WaveDisc4:0.81 SpecDisc512:0.99 SpecDisc2048:0.97 SpecDisc8192:0.86 MelSpecDisc:1.00 WaveDisc4:0.91 SpecDisc4096:0.98
+  4800  d_loss 13.164  adv +11.743  fm 3.039  cont 0.389  pit 0.089  hf 0.000  dc 2.070  | PeriodDisc2:0.65 PeriodDisc3:0.65 PeriodDisc5:0.64 PeriodDisc7:0.61 PeriodDisc11:0.64 WaveDisc1:0.85 WaveDisc2:0.87 WaveDisc4:0.82 SpecDisc512:0.98 SpecDisc2048:0.97 SpecDisc8192:0.87 MelSpecDisc:1.00 WaveDisc4:0.90 SpecDisc4096:0.98
+  4900  d_loss 12.878  adv +11.885  fm 2.917  cont 0.374  pit 0.090  hf 0.000  dc 2.037  | PeriodDisc2:0.67 PeriodDisc3:0.66 PeriodDisc5:0.65 PeriodDisc7:0.65 PeriodDisc11:0.65 WaveDisc1:0.85 WaveDisc2:0.87 WaveDisc4:0.82 SpecDisc512:0.99 SpecDisc2048:0.98 SpecDisc8192:0.87 MelSpecDisc:1.00 WaveDisc4:0.92 SpecDisc4096:0.98

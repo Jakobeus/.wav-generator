@@ -1,0 +1,8 @@
+C:\Users\theja\Documents\ML\work\wav\wav-generator\.venv\Lib\site-packages\torch\nn\modules\transformer.py:385: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  warnings.warn(
+critics (14): ['PeriodDisc2', 'PeriodDisc3', 'PeriodDisc5', 'PeriodDisc7', 'PeriodDisc11', 'WaveDisc1', 'WaveDisc2', 'WaveDisc4', 'SpecDisc512', 'SpecDisc2048', 'SpecDisc8192', 'MelSpecDisc', 'WaveDisc4', 'SpecDisc4096']
+device cuda | DI: ['60.0s', '20.0s', '84.5s']  ref: 171.0s
+critic low-pass: auto -> 6600 Hz (ref cutoff)
+ref energy above cutoff: 0.6765% (G is penalized for exceeding this)
+   100  d_loss 17.566  adv +7.146  fm 4.942  cont 1.127  pit 0.958  hf 0.000  | PeriodDisc2:0.55 PeriodDisc3:0.51 PeriodDisc5:0.53 PeriodDisc7:0.51 PeriodDisc11:0.57 WaveDisc1:0.74 WaveDisc2:0.77 WaveDisc4:0.72 SpecDisc512:0.84 SpecDisc2048:0.90 SpecDisc8192:0.90 MelSpecDisc:0.96 WaveDisc4:0.76 SpecDisc4096:0.89
+   200  d_loss 13.543  adv +10.104  fm 4.629  cont 0.741  pit 0.626  hf 0.000  | PeriodDisc2:0.59 PeriodDisc3:0.50 PeriodDisc5:0.55 PeriodDisc7:0.50 PeriodDisc11:0.56 WaveDisc1:0.91 WaveDisc2:0.91 WaveDisc4:0.83 SpecDisc512:0.98 SpecDisc2048:0.94 SpecDisc8192:0.92 MelSpecDisc:0.99 WaveDisc4:0.88 SpecDisc4096:0.95
